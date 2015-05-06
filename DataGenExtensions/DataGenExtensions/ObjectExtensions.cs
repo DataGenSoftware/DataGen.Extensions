@@ -8,6 +8,14 @@ namespace DataGenExtensions
 {
 	public static class ObjectExtensions
 	{
-		
+		public static bool IsNull(this object objectInstance)
+		{
+			return objectInstance == null;
+		}
+
+		public static bool IsNotNull(this object objectInstance)
+		{
+			return !objectInstance.IsNull();
+		}
 	}
 }
