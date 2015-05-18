@@ -1,5 +1,4 @@
-﻿using DataGen.Extensions.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,12 @@ namespace DataGen.Extensions
 	{
 		private static DayOfWeek FirstDayOfWeek()
 		{
-			return Settings.Instance.FirstDayOfWeek;
+			return DayOfWeek.Monday;
 		}
 
 		private static IEnumerable<DayOfWeek> WeekendDays()
 		{
-			return Settings.Instance.WeekendDays;
+			return new List<DayOfWeek>() { DayOfWeek.Saturday, DayOfWeek.Sunday };
 		}
 
 		public static bool IsWeekendDay(this DateTime value)

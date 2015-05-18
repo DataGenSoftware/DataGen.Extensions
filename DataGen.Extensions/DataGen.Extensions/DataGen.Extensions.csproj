@@ -41,9 +41,6 @@
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="CharExtensions.cs" />
-    <Compile Include="Common\Singleton.cs" />
-    <Compile Include="Core\ISettings.cs" />
-    <Compile Include="Core\Settings.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
