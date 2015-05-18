@@ -1,59 +1,22 @@
-﻿using System;
+﻿using DataGen.Extensions.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataGenExtensions
+namespace DataGen.Extensions
 {
 	public static class DateTimeExtensions
 	{
 		private static DayOfWeek FirstDayOfWeek()
 		{
-			DayOfWeek firstDayOfWeek = DayOfWeek.Monday;
-			string firstDayOfWeekSetting = null;
-
-			//firstDayOfWeekSetting = SettingGet("FirstDayOfWeek");
-
-			if (firstDayOfWeekSetting != null)
-			{
-				EnumExtensions.TryParse<DayOfWeek>(firstDayOfWeekSetting, firstDayOfWeek, out firstDayOfWeek);
-			}
-
-			return firstDayOfWeek;
+			return Settings.Instance.FirstDayOfWeek;
 		}
 
 		private static IEnumerable<DayOfWeek> WeekendDays()
 		{
-			List<DayOfWeek> weekendDays = new List<DayOfWeek>();
-			string weekendDaysSetting = null;
-
-			//weekendDaysSetting = SettingGet("WeekendDays");
-
-			if (weekendDaysSetting != null)
-			{
-				foreach (string weekendDaySetting in weekendDaysSetting.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries))
-				{
-					DayOfWeek? weekendDay = EnumExtensions.TryParse<DayOfWeek>(weekendDaySetting);
-					if (weekendDay.HasValue)
-					{
-						weekendDays.Add(weekendDay.Value);
-					}
-				}
-			}
-			else
-			{
-				weekendDays.AddRange
-				(
-					new DayOfWeek[]
-					{
-						DayOfWeek.Saturday,
-						DayOfWeek.Sunday,
-					}
-				);
-			}
-
-			return weekendDays;
+			return Settings.Instance.WeekendDays;
 		}
 
 		public static bool IsWeekendDay(this DateTime value)
