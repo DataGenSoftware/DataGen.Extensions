@@ -7,18 +7,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.net45", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.net35", "DataGen.Extensions.net35\DataGen.Extensions.net35.csproj", "{675FB16E-D5A0-482B-9589-811B29499F91}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{5E093200-44A9-4BA9-BAD8-83774F5826C1}"
-	ProjectSection(SolutionItems) = preProject
-		Common\ByteExtensions.cs = Common\ByteExtensions.cs
-		Common\CharExtensions.cs = Common\CharExtensions.cs
-		Common\DateTimeExtensions.cs = Common\DateTimeExtensions.cs
-		Common\EnumExtensions.cs = Common\EnumExtensions.cs
-		Common\IntegerExtensions.cs = Common\IntegerExtensions.cs
-		Common\ObjectExtensions.cs = Common\ObjectExtensions.cs
-		Common\StringExtensions.cs = Common\StringExtensions.cs
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datagen.Extensions.Shared", "Datagen.Extensions.Shared", "{5E093200-44A9-4BA9-BAD8-83774F5826C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.net40", "DataGen.Extensions.net40\DataGen.Extensions.net40.csproj", "{3F497304-DE51-4968-8EFD-5E5EF85A3FF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0C721736-3440-468B-91E7-E55DB4A490A1}"
+	ProjectSection(SolutionItems) = preProject
+		DataGen.Extensions.Shared\Common\AssemblyInfo.Common.cs = DataGen.Extensions.Shared\Common\AssemblyInfo.Common.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{BFC52285-6739-400E-8A42-6B9ED662E651}"
+	ProjectSection(SolutionItems) = preProject
+		DataGen.Extensions.Shared\Extensions\ByteExtensions.cs = DataGen.Extensions.Shared\Extensions\ByteExtensions.cs
+		DataGen.Extensions.Shared\Extensions\CharExtensions.cs = DataGen.Extensions.Shared\Extensions\CharExtensions.cs
+		DataGen.Extensions.Shared\Extensions\DateTimeExtensions.cs = DataGen.Extensions.Shared\Extensions\DateTimeExtensions.cs
+		DataGen.Extensions.Shared\Extensions\EnumExtensions.cs = DataGen.Extensions.Shared\Extensions\EnumExtensions.cs
+		DataGen.Extensions.Shared\Extensions\IntegerExtensions.cs = DataGen.Extensions.Shared\Extensions\IntegerExtensions.cs
+		DataGen.Extensions.Shared\Extensions\ObjectExtensions.cs = DataGen.Extensions.Shared\Extensions\ObjectExtensions.cs
+		DataGen.Extensions.Shared\Extensions\StringExtensions.cs = DataGen.Extensions.Shared\Extensions\StringExtensions.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,5 +48,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C721736-3440-468B-91E7-E55DB4A490A1} = {5E093200-44A9-4BA9-BAD8-83774F5826C1}
+		{BFC52285-6739-400E-8A42-6B9ED662E651} = {5E093200-44A9-4BA9-BAD8-83774F5826C1}
 	EndGlobalSection
 EndGlobal

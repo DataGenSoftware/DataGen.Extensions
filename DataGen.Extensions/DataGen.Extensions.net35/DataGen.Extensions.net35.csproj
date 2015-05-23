@@ -38,25 +38,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common\ByteExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Common\AssemblyInfo.Common.cs">
+      <Link>Properties\AssemblyInfo.Common.cs</Link>
+    </Compile>
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\ByteExtensions.cs">
       <Link>ByteExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\CharExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\CharExtensions.cs">
       <Link>CharExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\DateTimeExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\DateTimeExtensions.cs">
       <Link>DateTimeExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\EnumExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\EnumExtensions.cs">
       <Link>EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\IntegerExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\IntegerExtensions.cs">
       <Link>IntegerExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\ObjectExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\ObjectExtensions.cs">
       <Link>ObjectExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Common\StringExtensions.cs">
+    <Compile Include="..\DataGen.Extensions.Shared\Extensions\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
