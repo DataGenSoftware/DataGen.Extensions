@@ -35,7 +35,7 @@ namespace Sql.Net.Extensions
 
 		public static string ToWords(this long number, string culture)
 		{
-			if (culture == "pl-PL")
+			if (culture.StartsWith("pl"))
 			{
 				return IntegerExtensions.ToWords_pl_PL(number);
 			}
