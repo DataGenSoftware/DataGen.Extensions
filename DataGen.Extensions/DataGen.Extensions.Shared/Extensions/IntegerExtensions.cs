@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace Sql.Net.Extensions
+namespace DataGen.Extensions
 {
 	public static class IntegerExtensions
 	{
