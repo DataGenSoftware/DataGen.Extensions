@@ -8,40 +8,40 @@ namespace DataGen.Extensions
 {
 	public static class IntegerExtensions
 	{
-		public static string ToWords(this short Liczba, CultureInfo culture)
+		public static string ToWords(this short value, CultureInfo culture)
 		{
-			return ((long)Liczba).ToWords(culture);
+			return ((int)value).ToWords(culture.Name);
 		}
 
-		public static string ToWords(this short Liczba, string culture)
+		public static string ToWords(this short value, string culture)
 		{
-			return ((long)Liczba).ToWords(culture);
+			return ((int)value).ToWords(culture);
 		}
 
-		public static string ToWords(this int Liczba, CultureInfo culture)
+		public static string ToWords(this long value, CultureInfo culture)
 		{
-			return ((long)Liczba).ToWords(culture);
+			return ((int)value).ToWords(culture.Name);
 		}
 
-		public static string ToWords(this int Liczba, string culture)
+		public static string ToWords(this long value, string culture)
 		{
-			return ((long)Liczba).ToWords(culture);
+			return ((int)value).ToWords(culture);
 		}
 
-		public static string ToWords(this long Liczba, CultureInfo culture)
+		public static string ToWords(this int value, CultureInfo culture)
 		{
-			return Liczba.ToWords(culture.Name);
+			return ((int)value).ToWords(culture.Name);
 		}
 
-		public static string ToWords(this long number, string culture)
+		public static string ToWords(this int value, string culture)
 		{
 			if (culture.StartsWith("pl"))
 			{
-				return IntegerExtensions.ToWords_pl_PL(number);
+				return IntegerExtensions.ToWords_pl_PL(value);
 			}
 			else if (culture.StartsWith("en"))
 			{
-				return IntegerExtensions.ToWords_en(number);
+				return IntegerExtensions.ToWords_en(value);
 			}
 			else
 			{
