@@ -18,7 +18,7 @@ namespace DataGen.Extensions.Tests
 
 			date = new DateTime(2015, 9, 4);
 			actual = date.IsWeekendDay();
-			Assert.IsFalse(actual);
+			Assert.Inconclusive.IsFalse(actual);
 
 			date = new DateTime(2015, 9, 5);
 			actual = date.IsWeekendDay();
@@ -80,8 +80,23 @@ namespace DataGen.Extensions.Tests
 		[TestMethod]
 		public void EndOfDayTest()
 		{
-			Assert.Fail();
-		}
+            DateTime date, actual, expected;
+
+            date = new DateTime(2015, 9, 3, 13, 14, 11, 25);
+            actual = date.EndOfDay();
+            expected = new DateTime(2015, 9, 3, 23, 59, 59, 999);
+            Assert.AreEqual(expected, actual);
+
+            date = new DateTime(2015, 9, 4, 2, 23, 45, 1);
+            actual = date.EndOfDay();
+            expected = new DateTime(2015, 9, 4, 23, 59, 59, 999);
+            Assert.AreEqual(expected, actual);
+
+            date = new DateTime(2015, 9, 5, 19, 28, 1, 12);
+            actual = date.EndOfDay();
+            expected = new DateTime(2015, 9, 5, 23, 59, 59, 999);
+            Assert.AreEqual(expected, actual);
+        }
 
 		[TestMethod]
 		public void BeginingOfMonthTest()
@@ -154,13 +169,23 @@ namespace DataGen.Extensions.Tests
 		[TestMethod]
 		public void BeginingOfYearTest()
 		{
-			Assert.Fail();
-		}
+            DateTime date, actual, expected;
+
+            date = new DateTime(2015, 12, 19);
+            actual = date.BeginingOfYear();
+            expected = new DateTime(2015, 1, 1);
+            Assert.AreEqual(expected, actual);
+        }
 
 		[TestMethod]
 		public void EndOfYearTest()
 		{
-			Assert.Fail();
-		}
+            DateTime date, actual, expected;
+
+            date = new DateTime(2015, 12, 19);
+            actual = date.BeginingOfYear();
+            expected = new DateTime(2015, 12, 31);
+            Assert.AreEqual(expected, actual);
+        }
 	}
 }

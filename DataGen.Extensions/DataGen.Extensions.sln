@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.net45", "DataGen.Extensions.net45\DataGen.Extensions.net45.csproj", "{E4EFBE53-B7F8-4807-87DC-1A66EF024C68}"
 EndProject
@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.Tests", "DataGen.Extensions.Tests\DataGen.Extensions.Tests.csproj", "{9A749FC0-EA99-4641-A968-A33FAB9BFDE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extentions.UnitTests", "DataGen.Extentions.UnitTests\DataGen.Extentions.UnitTests.csproj", "{94B2E295-727B-4F56-BAFA-C3FA2651D22D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{9A749FC0-EA99-4641-A968-A33FAB9BFDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A749FC0-EA99-4641-A968-A33FAB9BFDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A749FC0-EA99-4641-A968-A33FAB9BFDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B2E295-727B-4F56-BAFA-C3FA2651D22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B2E295-727B-4F56-BAFA-C3FA2651D22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B2E295-727B-4F56-BAFA-C3FA2651D22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B2E295-727B-4F56-BAFA-C3FA2651D22D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
