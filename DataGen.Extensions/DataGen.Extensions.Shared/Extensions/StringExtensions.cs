@@ -218,5 +218,10 @@ namespace DataGen.Extensions
 		{
 			return value.HashAlgorithmVerifyHash(hash, SHA512.Create());
 		}
+
+        public static byte[] GetBytes(this string value)
+        {
+            return System.Text.Encoding.Unicode.GetBytes(value);
+        }
 	}
 }

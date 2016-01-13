@@ -20,7 +20,27 @@ namespace DataGen.Extensions
 
 		public static bool HashAlgorithmVerifyHash(this byte[] value, byte[] hash, HashAlgorithm hashAlgorithm)
 		{
-			return value.HashAlgorithmComputeHash(hashAlgorithm).Equals(hash);
+            byte[] hashToCompare = value.HashAlgorithmComputeHash(hashAlgorithm);
+
+            if (hash == null || hashToCompare == null)
+            {
+                return false;
+            }
+
+            if (hash.Length != hashToCompare.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                if (hash[i] !=hashToCompare[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
 		}
 
 		public static byte[] MD5ComputeHash(this byte[] value)
@@ -32,5 +52,10 @@ namespace DataGen.Extensions
 		{
 			return value.HashAlgorithmVerifyHash(hash, MD5.Create());
 		}
+
+        public static string GetString(this byte[] value)
+        {
+            return System.Text.Encoding.Unicode.GetString(value);
+        }
 	}
 }
