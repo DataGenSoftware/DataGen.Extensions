@@ -18,7 +18,7 @@ namespace DataGen.Extensions
 			StringBuilder result = new StringBuilder();
 			for (int i = 0; i < count; i++)
 			{
-				result.Append(value);
+                result.Append(value);
 			}
 			return result.ToString();
 		}

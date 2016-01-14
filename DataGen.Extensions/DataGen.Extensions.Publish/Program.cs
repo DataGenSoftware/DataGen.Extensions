@@ -51,7 +51,8 @@ namespace DataGen.Extensions.Publish
                     break;
             }
 
-            GetUserCommand();
+            Console.WriteLine();
+            DisplayMenu();
         }
 
         private static void Rebuild()
@@ -60,7 +61,7 @@ namespace DataGen.Extensions.Publish
             RebuildProjectWithConfiguration("Release 4.0");
             RebuildProjectWithConfiguration("Release 4.5");
 
-            Console.WriteLine("Rebuild finished.");
+            Console.WriteLine("Rebuild finished");
         }
 
         private static void RebuildProjectWithConfiguration(string configurationName)
@@ -72,7 +73,7 @@ namespace DataGen.Extensions.Publish
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe",
-                    Arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /t:t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"",
+                    Arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
