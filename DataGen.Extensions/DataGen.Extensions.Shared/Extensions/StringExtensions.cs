@@ -32,7 +32,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && key.IsNotNull())
 			{
-				return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, UTF8Encoding.UTF8.GetBytes(key));
+				return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, key.GetBytes());
 			}
 			else
 				return null;
@@ -42,7 +42,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && keyBytes.IsNotNull())
 			{
-				byte[] valueBytes = UTF8Encoding.UTF8.GetBytes(value);
+				byte[] valueBytes = value.GetBytes();
 
 				symmetricAlgorithm.Key = keyBytes;
 
@@ -60,7 +60,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && key.IsNotNull())
 			{
-				return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, UTF8Encoding.UTF8.GetBytes(key));
+				return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, key.GetBytes());
 			}
 			else
 				return null;
@@ -70,7 +70,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && keyBytes.IsNotNull())
 			{
-				byte[] valueBytes = Convert.FromBase64String(value);
+				byte[] valueBytes = value.GetBytes();
 
 				symmetricAlgorithm.Key = keyBytes;
 
@@ -89,7 +89,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new DESCryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash().Take(8).ToArray() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
 			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -98,7 +98,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new DESCryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash().Take(8).ToArray() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
 			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -107,7 +107,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new RC2CryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
 			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -116,7 +116,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new RC2CryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
 			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -125,7 +125,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new TripleDESCryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
 			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -134,7 +134,7 @@ namespace DataGen.Extensions
 			SymmetricAlgorithm symmetricAlgorithm = new TripleDESCryptoServiceProvider();
 			symmetricAlgorithm.Mode = CipherMode.ECB;
 			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? UTF8Encoding.UTF8.GetBytes(key).MD5ComputeHash() : null;
+			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
 			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
 		}
 
@@ -142,7 +142,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() == true)
 			{
-				byte[] hash = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(value));
+				byte[] hash = hashAlgorithm.ComputeHash(value.GetBytes());
 				StringBuilder result = new StringBuilder();
 				for (int i = 0; i < hash.Length; i++)
 				{

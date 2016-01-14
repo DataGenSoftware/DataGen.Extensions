@@ -40,7 +40,7 @@ namespace DataGen.Extensions.Tests
 
             byte[] actual = value.HashAlgorithmComputeHash(MD5.Create());
 
-            byte[] expected = { 68, 130, 166, 98, 61, 116, 65, 226, 63, 64, 82, 207, 11, 56, 197, 92 };
+            byte[] expected = {  };
             Assert.AreEqual(expected, actual);
         }
 
