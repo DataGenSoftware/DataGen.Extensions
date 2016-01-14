@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>DataGen.Extensions</id>
+        <version>1.0.6</version>
+        <title>DataGen.Extensions</title>
+        <authors>Karol Habczyk</authors>
+        <owners>Karol Habczyk</owners>
+        <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
+        <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>.NET types extensions</description>
+        <copyright>Copyright © Karol Habczyk</copyright>
+    </metadata>
+    <files>
+        <file src="bin\Release\net35\DataGen.Extensions.dll" target="lib\net35\DataGen.Extensions.dll" />
+        <file src="bin\Release\net40\DataGen.Extensions.dll" target="lib\net40\DataGen.Extensions.dll" />
+        <file src="bin\Release\net45\DataGen.Extensions.dll" target="lib\net45\DataGen.Extensions.dll" />
+    </files>
+</package>
