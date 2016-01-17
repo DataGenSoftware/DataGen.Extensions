@@ -59,7 +59,7 @@ namespace DataGen.Extensions.Publish
                     Rebuild();
                     break;
                 case "3":
-                    PublishToNuget();
+                    Publish();
                     break;
                 case "0":
                     Environment.Exit(0);
@@ -77,14 +77,10 @@ namespace DataGen.Extensions.Publish
             RebuildProjectWithConfiguration("Release 3.5");
             RebuildProjectWithConfiguration("Release 4.0");
             RebuildProjectWithConfiguration("Release 4.5");
-
-            Console.WriteLine("Rebuild finished");
         }
 
         private static void RebuildProjectWithConfiguration(string configurationName)
         {
-            Console.WriteLine("Rebuilding project with configuration: " + configurationName + "...");
-            Console.WriteLine();
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -93,7 +89,6 @@ namespace DataGen.Extensions.Publish
                     Arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    RedirectStandardError = true,
                     CreateNoWindow = true
                 }
             };
@@ -103,7 +98,6 @@ namespace DataGen.Extensions.Publish
                 string processOutput = process.StandardOutput.ReadLine();
                 Console.WriteLine(processOutput);
             }
-            Console.WriteLine();
         }
 
         private static Version GetAssemblyCurrentVersion()
@@ -253,9 +247,53 @@ namespace DataGen.Extensions.Publish
             File.WriteAllText(fileName, fileContent);
         }
 
-        private static void PublishToNuget()
+        private static void Publish()
         {
+            PackNuspec();
+            Console.WriteLine();
+            PushNupkg();
+        }
 
+        private static void PackNuspec()
+        {
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "..\\..\\..\\Tools\\nuget.exe",
+                    Arguments = "pack ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec -OutputDirectory \"..\\..\\..\\NuGet\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            process.Start();
+            while (!process.StandardOutput.EndOfStream)
+            {
+                string processOutput = process.StandardOutput.ReadLine();
+                Console.WriteLine(processOutput);
+            }
+        }
+
+        private static void PushNupkg()
+        {
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "..\\..\\..\\Tools\\nuget.exe",
+                    Arguments = string.Format("push ..\\..\\..\\NuGet\\DataGen.Extensions.{0}.nupkg", GetCurrentVersionString()),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            process.Start();
+            while (!process.StandardOutput.EndOfStream)
+            {
+                string processOutput = process.StandardOutput.ReadLine();
+                Console.WriteLine(processOutput);
+            }
         }
 
         private static void WrongCommand()
