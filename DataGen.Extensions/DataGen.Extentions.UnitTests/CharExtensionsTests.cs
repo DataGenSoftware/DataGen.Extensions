@@ -12,7 +12,7 @@ namespace DataGen.Extentions.UnitTests
     public class CharExtensionsTests
     {
         [Test]
-        public void CharExtensions_Replicate_ASignThreeTimes_ReturnsAAA()
+        public void CharReplicate_ASignThreeTimes_ReturnsAAA()
         {
             char sign = 'A';
             int times = 3;
@@ -24,7 +24,7 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [Test]
-        public void CharExtensions_Replicate_ASignZeroTimes_ReturnsEmptyString()
+        public void CharReplicate_ASignZeroTimes_ReturnsEmptyString()
         {
             char sign = 'A';
             int times = 0;

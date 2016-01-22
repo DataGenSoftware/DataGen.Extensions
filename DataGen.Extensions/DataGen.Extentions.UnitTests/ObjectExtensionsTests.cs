@@ -12,7 +12,7 @@ namespace DataGen.Extentions.UnitTests
     public class ObjectExtensionsTests
     {
         [Test]
-        public void ObjectExtensions_IsNull_Null_ReturnsTrue()
+        public void ObjectIsNull_Null_ReturnsTrue()
         {
             object objectInstance = null;
 
@@ -22,7 +22,7 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [Test]
-        public void ObjectExtensions_IsNull_Instance_ReturnsFalse()
+        public void ObjectIsNull_Instance_ReturnsFalse()
         {
             object objectInstance = new object();
 
@@ -32,7 +32,7 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [Test]
-        public void ObjectExtensions_IsNotNull_Null_ReturnsFalse()
+        public void ObjectIsNotNull_Null_ReturnsFalse()
         {
             object objectInstance = null;
 
@@ -42,7 +42,7 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [Test]
-        public void ObjectExtensions_IsNotNull_Instance_ReturnsTrue()
+        public void ObjectIsNotNull_Instance_ReturnsTrue()
         {
             object objectInstance = new object();
 

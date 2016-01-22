@@ -13,66 +13,107 @@ namespace DataGen.Extensions.Tests
     public class ByteExtensionsTests
     {
         [Test]
-        public void ByteExtensions_HashAlgorithmComputeHash_Null_ReturnsNull()
+        public void ByteHashAlgorithmComputeHash_Null_ReturnsNull()
         {
             byte[] value = null;
 
-            byte[] actual = value.HashAlgorithmComputeHash(MD5.Create());
+            byte[] actual = value.ComputeHash(MD5.Create());
 
             Assert.IsNull(actual);
         }
 
         [Test]
-        public void ByteExtensions_HashAlgorithmComputeHash_Bytes_ReturnsNotNull()
+        public void ByteHashAlgorithmComputeHash_Bytes_ReturnsBytes()
         {
             byte[] value = "Some text".GetBytes();
 
-            byte[] actual = value.HashAlgorithmComputeHash(MD5.Create());
+            byte[] actual = value.ComputeHash(MD5.Create());
 
             Assert.IsNotNull(actual);
         }
 
         [Test]
-        [Ignore]
-        public void ByteExtensions_HashAlgorithmComputeHash_Bytes_ReturnsExpectedHash()
-        {
-            byte[] value = "Some text".GetBytes();
-
-            byte[] actual = value.HashAlgorithmComputeHash(MD5.Create());
-
-            byte[] expected = {  };
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void ByteExtensions_HashAlgorithmVerifyHash_NullValueHashFromNullValue_ReturnsFalse()
+        public void ByteHashAlgorithmVerifyHash_NullValueHashFromNullValue_ReturnsFalse()
         {
             byte[] value = null;
-            byte[] hash = ((byte[])null).HashAlgorithmComputeHash(MD5.Create());
+            byte[] hash = ((byte[])null).ComputeHash(MD5.Create());
 
-            bool actual = value.HashAlgorithmVerifyHash(hash, MD5.Create());
+            bool actual = value.VerifyHash(hash, MD5.Create());
 
             Assert.IsFalse(actual);
         }
 
         [Test]
-        public void ByteExtensions_HashAlgorithmVerifyHash_BytesHashFromSameBytes_ReturnsTrue()
+        public void ByteHashAlgorithmVerifyHash_BytesHashFromSameBytes_ReturnsTrue()
         {
             byte[] value = "Some text".GetBytes();
-            byte[] hash = value.HashAlgorithmComputeHash(MD5.Create());
+            byte[] hash = value.ComputeHash(MD5.Create());
 
-            bool actual = value.HashAlgorithmVerifyHash(hash, MD5.Create());
+            bool actual = value.VerifyHash(hash, MD5.Create());
 
             Assert.IsTrue(actual);
         }
 
         [Test]
-        public void ByteExtensions_HashAlgorithmVerifyHash_BytesHashFromDifferentBytes_ReturnsFalse()
+        public void ByteHashAlgorithmVerifyHash_BytesHashFromDifferentBytes_ReturnsFalse()
         {
             byte[] value = "Some text".GetBytes();
-            byte[] hash = "Different text".GetBytes().HashAlgorithmComputeHash(MD5.Create());
+            byte[] hash = "Different text".GetBytes().ComputeHash(MD5.Create());
 
-            bool actual = value.HashAlgorithmVerifyHash(hash, MD5.Create());
+            bool actual = value.VerifyHash(hash, MD5.Create());
+
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
+        public void ByteMD5ComputeHash_Null_RetutnsNull()
+        {
+            byte[] value = null;
+
+            byte[] actual = value.MD5ComputeHash();
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void ByteMD5ComputeHash_Bytes_RetutnsBytes()
+        {
+            byte[] value = "Some text".GetBytes();
+
+            byte[] actual = value.MD5ComputeHash();
+
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void ByteMD5ComputeHash_NullValueHashFromNullValue_ReturnsFalse()
+        {
+            byte[] value = null;
+            byte[] hash = ((byte[])null).MD5ComputeHash();
+
+            bool actual = value.MD5VerifyHash(hash);
+
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
+        public void ByteMD5ComputeHash_BytesHashFromSameBytes_ReturnsTrue()
+        {
+            byte[] value = "Some text".GetBytes();
+            byte[] hash = value.MD5ComputeHash();
+
+            bool actual = value.MD5VerifyHash(hash);
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void ByteMD5ComputeHash_BytesHashFromDifferentBytes_ReturnsFalse()
+        {
+            byte[] value = "Some text".GetBytes();
+            byte[] hash = "Different text".GetBytes().MD5ComputeHash();
+
+            bool actual = value.MD5VerifyHash(hash);
 
             Assert.IsFalse(actual);
         }

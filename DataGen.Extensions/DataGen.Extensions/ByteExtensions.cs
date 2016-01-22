@@ -8,7 +8,7 @@ namespace DataGen.Extensions
 {
 	public static class ByteExtensions
 	{
-		public static byte[] HashAlgorithmComputeHash(this byte[] value, HashAlgorithm hashAlgorithm)
+		public static byte[] ComputeHash(this byte[] value, HashAlgorithm hashAlgorithm)
 		{
 			if (value.IsNotNull() == true)
 			{
@@ -18,9 +18,9 @@ namespace DataGen.Extensions
 				return null;
 		}
 
-		public static bool HashAlgorithmVerifyHash(this byte[] value, byte[] hash, HashAlgorithm hashAlgorithm)
+		public static bool VerifyHash(this byte[] value, byte[] hash, HashAlgorithm hashAlgorithm)
 		{
-            byte[] hashToCompare = value.HashAlgorithmComputeHash(hashAlgorithm);
+            byte[] hashToCompare = value.ComputeHash(hashAlgorithm);
 
             if (hash == null || hashToCompare == null)
             {
@@ -45,12 +45,12 @@ namespace DataGen.Extensions
 
 		public static byte[] MD5ComputeHash(this byte[] value)
 		{
-			return value.HashAlgorithmComputeHash(MD5.Create());
+			return value.ComputeHash(MD5.Create());
 		}
 
 		public static bool MD5VerifyHash(this byte[] value, byte[] hash)
 		{
-			return value.HashAlgorithmVerifyHash(hash, MD5.Create());
+			return value.VerifyHash(hash, MD5.Create());
 		}
 
         public static string GetString(this byte[] value)

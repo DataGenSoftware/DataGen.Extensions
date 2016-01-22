@@ -13,7 +13,7 @@ namespace DataGen.Extentions.UnitTests
     {
         [TestCase("Some text")]
         [TestCase("ąęśżźćńółĄĘŚŻŹŃŁÓ")]
-        public void StringExtensions_GetBytes_String_VerifyCorrectness(string value)
+        public void StringGetBytes_String_VerifyCorrectness(string value)
         {
             byte[] bytes = value.GetBytes();
 
