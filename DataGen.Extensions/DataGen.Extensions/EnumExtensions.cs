@@ -8,29 +8,32 @@ namespace DataGen.Extensions
 	public static class EnumExtensions
 	{
 		public static bool TryParse<TEnum>(string value, TEnum defaultValue, out TEnum result)
-		{
-			if (value == null || !Enum.IsDefined(typeof(Enum), value))
-			{
-				result = defaultValue;
-				return false;
-			}
+            where TEnum : struct
+        {
+            var enumValue = TryParse<TEnum>(value);
+            if (enumValue.HasValue)
+            {
+                result = enumValue.Value;
+                return true;
+            }
 			else
 			{
-				result = (TEnum)Enum.Parse(typeof(TEnum), value);
-				return true;
-			}
+                result = defaultValue;
+                return false;
+            }
 		}
 
-		public static TEnum? TryParse<TEnum>(string value) where TEnum : struct
+        public static Nullable<TEnum> TryParse<TEnum>(string value) 
+            where TEnum : struct
 		{
-			if (value == null || !Enum.IsDefined(typeof(Enum), value))
+			if (value == null || !Enum.IsDefined(typeof(TEnum), value))
 			{
 				return null;
 			}
 			else
 			{
-				return (TEnum?)Enum.Parse(typeof(TEnum), value);
+				return (Nullable<TEnum>)Enum.Parse(typeof(TEnum), value);
 			}
 		}
-	}
+    }
 }
