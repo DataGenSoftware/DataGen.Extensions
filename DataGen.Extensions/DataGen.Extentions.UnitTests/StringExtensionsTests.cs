@@ -72,5 +72,179 @@ namespace DataGen.Extentions.UnitTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        #region DES
+
+        [TestCase("Some text to encrypt", "key")]
+        [TestCase("", "key")]
+        public void StringDESEncryptDecrypt_Text_Verify(string value, string key)
+        {
+            var actual = value.DESEncrypt(key).DESDecrypt(key);
+
+            var expected = value;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringDESEncrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.DESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringDESEncrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to encrypt";
+            string key = null;
+
+            var actual = value.DESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringDESDecrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.DESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringDESDecrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to decrypt";
+            string key = null;
+
+            var actual = value.DESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region RC2
+
+        [TestCase("Some text to encrypt", "key")]
+        [TestCase("", "key")]
+        public void StringRC2EncryptDecrypt_Text_Verify(string value, string key)
+        {
+            var actual = value.RC2Encrypt(key).RC2Decrypt(key);
+
+            var expected = value;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringRC2Encrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.RC2Encrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringRC2Encrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to encrypt";
+            string key = null;
+
+            var actual = value.RC2Encrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringRC2Decrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.RC2Encrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringRC2Decrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to decrypt";
+            string key = null;
+
+            var actual = value.RC2Encrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region TripleDES
+
+        [TestCase("Some text to encrypt", "key")]
+        [TestCase("", "key")]
+        public void StringTripleDESEncryptDecrypt_Text_Verify(string value, string key)
+        {
+            var actual = value.TripleDESEncrypt(key).TripleDESDecrypt(key);
+
+            var expected = value;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringTripleDESEncrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.TripleDESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringTripleDESEncrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to encrypt";
+            string key = null;
+
+            var actual = value.TripleDESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringTripleDESDecrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.TripleDESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringTripleDESDecrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to decrypt";
+            string key = null;
+
+            var actual = value.TripleDESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        #endregion
     }
 }

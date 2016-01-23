@@ -40,7 +40,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && key.IsNotNull())
 			{
-				return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, key.GetBytes());
+				return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, GetKeyBytes(key));
 			}
 			else
 				return null;
@@ -58,7 +58,7 @@ namespace DataGen.Extensions
 				byte[] result = CryptoTransform.TransformFinalBlock(valueBytes, 0, valueBytes.Length);
 				symmetricAlgorithm.Clear();
 
-				return Convert.ToBase64String(result, 0, result.Length);
+                return result.GetString();
 			}
 			else
 				return null;
@@ -68,7 +68,7 @@ namespace DataGen.Extensions
 		{
 			if (value.IsNotNull() && key.IsNotNull())
 			{
-				return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, key.GetBytes());
+				return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, GetKeyBytes(key));
 			}
 			else
 				return null;
@@ -86,7 +86,7 @@ namespace DataGen.Extensions
 				byte[] result = CryptoTransform.TransformFinalBlock(valueBytes, 0, valueBytes.Length);
 				symmetricAlgorithm.Clear();
 
-				return UTF8Encoding.UTF8.GetString(result);
+				return result.GetString();
 			}
 			else
 				return null;
@@ -94,59 +94,77 @@ namespace DataGen.Extensions
 
 		public static string DESEncrypt(this string value, string key)
 		{
-			SymmetricAlgorithm symmetricAlgorithm = new DESCryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
-			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("DES");
+            return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, GetKey8Bytes(key));
 		}
 
 		public static string DESDecrypt(this string value, string key)
-		{
-			SymmetricAlgorithm symmetricAlgorithm = new DESCryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
-			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
-		}
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("DES");
+            return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, GetKey8Bytes(key));
+        }
 
-		public static string RC2Encrypt(this string value, string key)
+        public static string RC2Encrypt(this string value, string key)
 		{
-			SymmetricAlgorithm symmetricAlgorithm = new RC2CryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
-			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("RC2");
+            return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, key);
 		}
 
 		public static string RC2Decrypt(this string value, string key)
 		{
-			SymmetricAlgorithm symmetricAlgorithm = new RC2CryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
-			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("RC2");
+            return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, key);
 		}
 
 		public static string TripleDESEncrypt(this string value, string key)
 		{
-			SymmetricAlgorithm symmetricAlgorithm = new TripleDESCryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
-			return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("3DES");
+            return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, key);
 		}
 
 		public static string TripleDESDecrypt(this string value, string key)
-		{
-			SymmetricAlgorithm symmetricAlgorithm = new TripleDESCryptoServiceProvider();
-			symmetricAlgorithm.Mode = CipherMode.ECB;
-			symmetricAlgorithm.Padding = PaddingMode.PKCS7;
-			byte[] keyBytes = key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
-			return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
-		}
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("3DES");
+            return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, key);
+        }
+        
+        private static byte[] GetKeyBytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
+        }
 
-		public static string HashAlgorithmComputeHash(this string value, HashAlgorithm hashAlgorithm)
+        private static byte[] GetKey8Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
+        }
+
+        public static SymmetricAlgorithm MakeSymmetricAlgorithm(string algorithmName)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = null;
+
+            switch (algorithmName)
+            {
+                case "DES":
+                    symmetricAlgorithm = new DESCryptoServiceProvider();
+                    break;
+                case "RC2":
+                    symmetricAlgorithm = new RC2CryptoServiceProvider();
+                    break;
+                case "3DES":
+                    symmetricAlgorithm = new TripleDESCryptoServiceProvider();
+                    break;
+            }
+
+            if (symmetricAlgorithm.IsNotNull())
+            {
+                symmetricAlgorithm.Mode = CipherMode.ECB;
+                symmetricAlgorithm.Padding = PaddingMode.PKCS7;
+            }
+
+            return symmetricAlgorithm;
+        }
+
+        public static string HashAlgorithmComputeHash(this string value, HashAlgorithm hashAlgorithm)
 		{
 			if (value.IsNotNull() == true)
 			{
@@ -229,7 +247,7 @@ namespace DataGen.Extensions
 
         public static byte[] GetBytes(this string value)
         {
-            return System.Text.Encoding.Unicode.GetBytes(value);
+            return System.Text.Encoding.Default.GetBytes(value);
         }
 
         public static Nullable<TEnum> ParseEnum<TEnum>(this string value)

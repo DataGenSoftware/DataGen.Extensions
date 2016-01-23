@@ -55,7 +55,7 @@ namespace DataGen.Extensions
 
         public static string GetString(this byte[] value)
         {
-            return System.Text.Encoding.Unicode.GetString(value);
+            return System.Text.Encoding.Default.GetString(value);
         }
 	}
 }
