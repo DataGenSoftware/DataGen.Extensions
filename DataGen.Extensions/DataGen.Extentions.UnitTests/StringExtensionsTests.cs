@@ -19,5 +19,26 @@ namespace DataGen.Extentions.UnitTests
 
             Assert.AreEqual(value, bytes.GetString());
         }
+
+        [Test]
+        public void StringParseEnum_ExistingEnumValueString_ReturnsEnumValue()
+        {
+            string value = "Sunday";
+
+            var actual = value.ParseEnum<DayOfWeek>();
+
+            var expected = DayOfWeek.Sunday;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringParseEnum_NotExistingEnumValueString_ReturnsNull()
+        {
+            string value = "Someday";
+
+            var actual = value.ParseEnum<DayOfWeek>();
+
+            Assert.IsNull(actual);
+        }
     }
 }

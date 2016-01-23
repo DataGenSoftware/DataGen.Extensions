@@ -223,5 +223,11 @@ namespace DataGen.Extensions
         {
             return System.Text.Encoding.Unicode.GetBytes(value);
         }
+
+        public static Nullable<TEnum> ParseEnum<TEnum>(this string value)
+            where TEnum : struct
+        {
+            return EnumExtensions.TryParse<TEnum>(value);
+        }
 	}
 }
