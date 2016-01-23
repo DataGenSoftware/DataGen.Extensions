@@ -15,6 +15,10 @@ namespace DataGen.Extensions
 
 		public static string Replicate(this string value, int count)
 		{
+            if (value.IsNull())
+            {
+                return null;
+            }
 			StringBuilder result = new StringBuilder();
 			for (int i = 0; i < count; i++)
 			{
@@ -25,7 +29,11 @@ namespace DataGen.Extensions
 
 		public static string LeadWithChar(this string value, char character, int length)
 		{
-			return value ?? (character.Replicate(length - value.Length) + value);
+            if (value.IsNull())
+            {
+                return null;
+            }
+            return (character.Replicate(length - value.Length) + value);
 		}
 
 		public static string SymmetricAlgorithmEncrypt(this string value, SymmetricAlgorithm symmetricAlgorithm, string key)

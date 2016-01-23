@@ -40,5 +40,37 @@ namespace DataGen.Extentions.UnitTests
 
             Assert.IsNull(actual);
         }
+
+        [Test]
+        public void StringEmptyIfNull_Null_ReturnsEmptyString()
+        {
+            string value = null;
+
+            var actual = value.EmptyIfNull();
+
+            var expected = string.Empty;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("Text", 3, "TextTextText")]
+        [TestCase("Text", -1, "")]
+        [TestCase(null, 2, null)]
+        public void StringReplicate_TextCount_ReturnsReplicatedText(string value, int count, string expected)
+        {
+            var actual = value.Replicate(count);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("1", '0', 2, "01")]
+        [TestCase("12", '0', 6, "000012")]
+        [TestCase(null, '0', 3, null)]
+        [TestCase("1", '0', -1, "1")]
+        public void StringLeadWithChar_TextCharLenght_ReturnsTextWithLeadingChars(string value, char character, int length, string expected)
+        {
+            var actual = value.LeadWithChar(character, length);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
