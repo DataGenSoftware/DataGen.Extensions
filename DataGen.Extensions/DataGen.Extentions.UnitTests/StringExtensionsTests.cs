@@ -246,5 +246,52 @@ namespace DataGen.Extentions.UnitTests
         }
 
         #endregion
+
+        #region MD5
+
+        [TestCase("Some text to encrypt")]
+        [TestCase("")]
+        public void StringMD5ComputeHashVerifyHash_TextVerify_Verify(string value)
+        {
+            var hash = value.MD5ComputeHash();
+
+            var actual = value.MD5VerifyHash(hash);
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void StringMD5ComputeHash_NullText_ReturnsNull()
+        {
+            string value = null;
+
+            var actual = value.MD5ComputeHash();
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringMD5VerifyHash_NullHash_ReturnsFalse()
+        {
+            string value = "Some text to encrypt";
+            string hash = null;
+
+            var actual = value.MD5VerifyHash(hash);
+
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
+        public void StringMD5VerifyHash_NullText_ReturnsFalse()
+        {
+            string value = null;
+            string hash = "hash";
+
+            var actual = value.MD5VerifyHash(hash);
+
+            Assert.IsFalse(actual);
+        }
+
+        #endregion
     }
 }
