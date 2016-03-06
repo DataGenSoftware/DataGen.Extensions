@@ -57,5 +57,38 @@ namespace DataGen.Extensions
         {
             return System.Text.Encoding.Default.GetString(value);
         }
-	}
+
+        public static byte[] SymmetricAlgorithmEncrypt(this byte[] value, SymmetricAlgorithm symmetricAlgorithm, byte[] key)
+        {
+            if (value.IsNotNull() && key.IsNotNull())
+            {
+                symmetricAlgorithm.Key = key;
+
+                ICryptoTransform CryptoTransform = symmetricAlgorithm.CreateEncryptor();
+                byte[] result = CryptoTransform.TransformFinalBlock(value, 0, value.Length);
+                symmetricAlgorithm.Clear();
+
+                return result;
+            }
+            else
+                return null;
+        }
+
+        public static byte[] SymmetricAlgorithmDecrypt(this byte[] value, SymmetricAlgorithm symmetricAlgorithm, byte[] key)
+        {
+            if (value.IsNotNull() && key.IsNotNull())
+            {
+                symmetricAlgorithm.Key = key;
+
+                ICryptoTransform CryptoTransform = symmetricAlgorithm.CreateDecryptor();
+                byte[] result = CryptoTransform.TransformFinalBlock(value, 0, value.Length);
+                symmetricAlgorithm.Clear();
+
+                return result;
+            }
+            else
+                return null;
+        }
+
+    }
 }
