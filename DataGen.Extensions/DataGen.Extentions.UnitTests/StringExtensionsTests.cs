@@ -73,6 +73,64 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        #region AES
+
+        [TestCase("Some text to encrypt", "key")]
+        [TestCase("", "key")]
+        public void StringAESEncryptDecrypt_Text_Verify(string value, string key)
+        {
+            var actual = value.AESEncrypt(key).AESDecrypt(key);
+
+            var expected = value;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StringAESEncrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.AESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringAESEncrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to encrypt";
+            string key = null;
+
+            var actual = value.AESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringAESDecrypt_NullText_ReturnsNull()
+        {
+            string value = null;
+            string key = "key";
+
+            var actual = value.AESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringAESDecrypt_NullKey_ReturnsNull()
+        {
+            string value = "Some text to decrypt";
+            string key = null;
+
+            var actual = value.AESEncrypt(key);
+
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
         #region DES
 
         [TestCase("Some text to encrypt", "key")]

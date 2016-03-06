@@ -48,21 +48,18 @@ namespace DataGen.Extensions
 
 		public static string SymmetricAlgorithmEncrypt(this string value, SymmetricAlgorithm symmetricAlgorithm, byte[] keyBytes)
 		{
-			if (value.IsNotNull() && keyBytes.IsNotNull())
-			{
-				byte[] valueBytes = value.GetBytes();
+            if (value.IsNotNull())
+            {
+                byte[] valueBytes = value.GetBytes();
 
-				symmetricAlgorithm.Key = keyBytes;
+                var result = valueBytes.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyBytes);
 
-				ICryptoTransform CryptoTransform = symmetricAlgorithm.CreateEncryptor();
-				byte[] result = CryptoTransform.TransformFinalBlock(valueBytes, 0, valueBytes.Length);
-				symmetricAlgorithm.Clear();
+                if (result.IsNotNull())
+                    return result.GetString();
+            }
 
-                return result.GetString();
-			}
-			else
-				return null;
-		}
+            return null;
+        }
 
 		public static string SymmetricAlgorithmDecrypt(this string value, SymmetricAlgorithm symmetricAlgorithm, string key)
 		{
@@ -76,23 +73,32 @@ namespace DataGen.Extensions
 
 		public static string SymmetricAlgorithmDecrypt(this string value, SymmetricAlgorithm symmetricAlgorithm, byte[] keyBytes)
 		{
-			if (value.IsNotNull() && keyBytes.IsNotNull())
+			if (value.IsNotNull())
 			{
 				byte[] valueBytes = value.GetBytes();
 
-				symmetricAlgorithm.Key = keyBytes;
+                var result = valueBytes.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyBytes);
 
-				ICryptoTransform CryptoTransform = symmetricAlgorithm.CreateDecryptor();
-				byte[] result = CryptoTransform.TransformFinalBlock(valueBytes, 0, valueBytes.Length);
-				symmetricAlgorithm.Clear();
-
-				return result.GetString();
+                if (result.IsNotNull())
+                    return result.GetString();
 			}
-			else
-				return null;
+
+            return null;
 		}
 
-		public static string DESEncrypt(this string value, string key)
+        public static string AESEncrypt(this string value, string key)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("AES");
+            return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, GetKey16Bytes(key));
+        }
+
+        public static string AESDecrypt(this string value, string key)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("AES");
+            return value.SymmetricAlgorithmDecrypt(symmetricAlgorithm, GetKey16Bytes(key));
+        }
+
+        public static string DESEncrypt(this string value, string key)
 		{
             SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("DES");
             return value.SymmetricAlgorithmEncrypt(symmetricAlgorithm, GetKey8Bytes(key));
@@ -138,12 +144,25 @@ namespace DataGen.Extensions
             return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
         }
 
+        private static byte[] GetKey16Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(16).ToArray() : null;
+        }
+
+        private static byte[] GetKey32Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(32).ToArray() : null;
+        }
+
         public static SymmetricAlgorithm MakeSymmetricAlgorithm(string algorithmName)
         {
             SymmetricAlgorithm symmetricAlgorithm = null;
 
             switch (algorithmName)
             {
+                case "AES":
+                    symmetricAlgorithm = new AesCryptoServiceProvider();
+                    break;
                 case "DES":
                     symmetricAlgorithm = new DESCryptoServiceProvider();
                     break;
