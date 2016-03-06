@@ -293,5 +293,52 @@ namespace DataGen.Extentions.UnitTests
         }
 
         #endregion
+
+        #region SHA1
+
+        [TestCase("Some text to encrypt")]
+        [TestCase("")]
+        public void StringSHA1ComputeHashVerifyHash_TextVerify_Verify(string value)
+        {
+            var hash = value.SHA1ComputeHash();
+
+            var actual = value.SHA1VerifyHash(hash);
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void StringSHA1ComputeHash_NullText_ReturnsNull()
+        {
+            string value = null;
+
+            var actual = value.SHA1ComputeHash();
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        public void StringSHA1VerifyHash_NullHash_ReturnsFalse()
+        {
+            string value = "Some text to encrypt";
+            string hash = null;
+
+            var actual = value.MD5VerifyHash(hash);
+
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
+        public void StringSHA1VerifyHash_NullText_ReturnsFalse()
+        {
+            string value = null;
+            string hash = "hash";
+
+            var actual = value.MD5VerifyHash(hash);
+
+            Assert.IsFalse(actual);
+        }
+
+        #endregion
     }
 }
