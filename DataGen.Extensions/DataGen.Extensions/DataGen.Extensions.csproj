@@ -58,7 +58,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp"  Condition="'$(TargetFrameworkVersion)' == 'v4.0'" />
+    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.0'" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,6 +69,11 @@
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="CharExtensions.cs" />
+    <Compile Include="Cryptography\ByteExtensions.cs" />
+    <Compile Include="Cryptography\KeyFactory.cs" />
+    <Compile Include="Cryptography\StringExtensions.cs" />
+    <Compile Include="Cryptography\SymmetricAlgorithmFactory.cs" />
+    <Compile Include="Cryptography\SymmetricAlgorithmTypes.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="IntegerExtensions.cs" />

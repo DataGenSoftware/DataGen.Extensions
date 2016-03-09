@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataGen.Extensions;
+using DataGen.Extensions.Cryptography;
 
 namespace DataGen.Extentions.UnitTests
 {
