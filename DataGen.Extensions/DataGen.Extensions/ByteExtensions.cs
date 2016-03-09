@@ -90,5 +90,65 @@ namespace DataGen.Extensions
                 return null;
         }
 
+        public static byte[] AESEncrypt(this byte[] data, string key)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("AES");
+            return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, GetKey16Bytes(key));
+        }
+
+        public static byte[] AESDecrypt(this byte[] data, string key)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = MakeSymmetricAlgorithm("AES");
+            return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, GetKey16Bytes(key));
+        }
+
+        public static SymmetricAlgorithm MakeSymmetricAlgorithm(string algorithmName)
+        {
+            SymmetricAlgorithm symmetricAlgorithm = null;
+
+            switch (algorithmName)
+            {
+                case "AES":
+                    symmetricAlgorithm = new AesCryptoServiceProvider();
+                    break;
+                case "DES":
+                    symmetricAlgorithm = new DESCryptoServiceProvider();
+                    break;
+                case "RC2":
+                    symmetricAlgorithm = new RC2CryptoServiceProvider();
+                    break;
+                case "3DES":
+                    symmetricAlgorithm = new TripleDESCryptoServiceProvider();
+                    break;
+            }
+
+            if (symmetricAlgorithm.IsNotNull())
+            {
+                symmetricAlgorithm.Mode = CipherMode.ECB;
+                symmetricAlgorithm.Padding = PaddingMode.PKCS7;
+            }
+
+            return symmetricAlgorithm;
+        }
+
+        private static byte[] GetKeyBytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash() : null;
+        }
+
+        private static byte[] GetKey8Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(8).ToArray() : null;
+        }
+
+        private static byte[] GetKey16Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(16).ToArray() : null;
+        }
+
+        private static byte[] GetKey32Bytes(string key)
+        {
+            return key.IsNotNull() ? key.GetBytes().MD5ComputeHash().Take(32).ToArray() : null;
+        }
     }
 }
