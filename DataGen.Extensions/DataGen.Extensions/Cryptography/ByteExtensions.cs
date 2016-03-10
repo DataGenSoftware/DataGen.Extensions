@@ -102,6 +102,52 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(16, password));
         }
 
-        
+        public static byte[] DESEncrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.DES);
+            return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(8, password));
+        }
+
+        public static byte[] DESDecrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.DES);
+            return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(8, password));
+        }
+
+        public static byte[] RC2Encrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.RC2);
+            return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
+        }
+
+        public static byte[] RC2Decrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.RC2);
+            return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
+        }
+
+        public static byte[] TripleDESEncrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.TripleDES);
+            return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
+        }
+
+        public static byte[] TripleDESDecrypt(this byte[] data, string password)
+        {
+            SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
+            KeyFactory keyFactory = new KeyFactory();
+            SymmetricAlgorithm symmetricAlgorithm = algorithmFactory.CreateSymmetricAlgorithm(SymmetricAlgorithmTypes.TripleDES);
+            return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
+        }
     }
 }
