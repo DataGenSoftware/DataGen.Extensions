@@ -81,23 +81,9 @@ namespace DataGen.Extensions.Publish
 
         private static void RebuildProjectWithConfiguration(string configurationName)
         {
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe",
-                    Arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string processOutput = process.StandardOutput.ReadLine();
-                Console.WriteLine(processOutput);
-            }
+            string fileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe";
+            string arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
+            Process(fileName, arguments);
         }
 
         private static Version GetAssemblyCurrentVersion()
@@ -132,6 +118,7 @@ namespace DataGen.Extensions.Publish
             Console.WriteLine("3 - Increase major version number");
             Console.WriteLine("4 - Enter version");
             Console.WriteLine("5 - Show current version");
+            Console.WriteLine("6 - Commit current version");
             Console.WriteLine("0 - Main menu");
 
             GetUserCommand(new Action<string>(HandleChangeVersionMenuCommand));
@@ -159,6 +146,9 @@ namespace DataGen.Extensions.Publish
                     break;
                 case "5":
                     ShowCurrentVersion();
+                    break;
+                case "6":
+                    CommitCurrentVersion();
                     break;
                 case "0":
                     DisplayMainMenu();
@@ -204,6 +194,40 @@ namespace DataGen.Extensions.Publish
         private static void ShowCurrentVersion()
         {
             Console.WriteLine(string.Format("Current version: {0}", GetCurrentVersionString()));
+        }
+
+        private static void CommitCurrentVersion()
+        {
+            Git("add ..\\..\\..\\DataGen.Extensions\\Properties\\AssemblyInfo.cs");
+            Git("add ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec");
+            Git("commit -m \"Change version\"");
+        }
+
+        private static void Git(string arguments)
+        {
+            string fileName = "C:\\Program Files\\Git\\cmd\\git.exe";
+            Process(fileName, arguments);
+        }
+
+        private static void Process(string fileName, string arguments)
+        {
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = fileName,
+                    Arguments = arguments,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            process.Start();
+            while (!process.StandardOutput.EndOfStream)
+            {
+                string processOutput = process.StandardOutput.ReadLine();
+                Console.WriteLine(processOutput);
+            }
         }
 
         private static void ChangeVersion()
@@ -256,44 +280,16 @@ namespace DataGen.Extensions.Publish
 
         private static void PackNuspec()
         {
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "..\\..\\..\\Tools\\nuget.exe",
-                    Arguments = "pack ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec -OutputDirectory \"..\\..\\..\\NuGet\"",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string processOutput = process.StandardOutput.ReadLine();
-                Console.WriteLine(processOutput);
-            }
+            string fileName = "..\\..\\..\\Tools\\nuget.exe";
+            string arguments = "pack ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec -OutputDirectory \"..\\..\\..\\NuGet\"";
+            Process(fileName, arguments);
         }
 
         private static void PushNupkg()
         {
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "..\\..\\..\\Tools\\nuget.exe",
-                    Arguments = string.Format("push ..\\..\\..\\NuGet\\DataGen.Extensions.{0}.nupkg", GetCurrentVersionString()),
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string processOutput = process.StandardOutput.ReadLine();
-                Console.WriteLine(processOutput);
-            }
+            string fileName = "..\\..\\..\\Tools\\nuget.exe";
+            string arguments = string.Format("push ..\\..\\..\\NuGet\\DataGen.Extensions.{0}.nupkg", GetCurrentVersionString());
+            Process(fileName, arguments);
         }
 
         private static void WrongCommand()
