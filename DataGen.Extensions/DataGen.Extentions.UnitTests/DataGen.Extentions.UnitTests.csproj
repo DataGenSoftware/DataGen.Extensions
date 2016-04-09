@@ -71,6 +71,7 @@
     <Compile Include="ByteExtensionsTests.cs" />
     <Compile Include="CharExtensionsTests.cs" />
     <Compile Include="EnumExtensionsTests.cs" />
+    <Compile Include="IntegerExtensionsTests.cs" />
     <Compile Include="ObjectExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsTests.cs" />
