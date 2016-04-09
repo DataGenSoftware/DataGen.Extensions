@@ -77,6 +77,10 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="IntegerExtensions.cs" />
+    <Compile Include="NumberInRomans\Common\IRomanNumeralsRepository.cs" />
+    <Compile Include="NumberInRomans\Common\Numeral.cs" />
+    <Compile Include="NumberInRomans\RomanConstantNumerals.cs" />
+    <Compile Include="NumberInRomans\RomanNumeralsExtensions.cs" />
     <Compile Include="NumberInWords\Common\NumberInWordsFactory.cs" />
     <Compile Include="NumberInWords\Common\NumberInWordsService.cs" />
     <Compile Include="NumberInWords\Common\Numeral.cs" />
@@ -94,7 +98,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

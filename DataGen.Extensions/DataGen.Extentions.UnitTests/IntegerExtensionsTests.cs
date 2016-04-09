@@ -1,4 +1,5 @@
-﻿using DataGen.Extensions.NumberInWords;
+﻿using DataGen.Extensions.NumberInRomans;
+using DataGen.Extensions.NumberInWords;
 using DataGen.Extensions.NumberInWords.Common;
 using NUnit.Framework;
 using System;
@@ -54,6 +55,24 @@ namespace DataGen.Extentions.UnitTests
             var numberInWordsFactory = numberInWordsFactoryCreator.CreateFactory(cultureName);
             var numeralsRepository = numberInWordsFactory.CreateNumeralsRepository();
             return numberInWordsFactory.CreateNumberInWordsService(numeralsRepository);
+        }
+
+        [TestCase(0, "")]
+        [TestCase(1998, "MCMXCVIII")]
+        [TestCase(2015, "MMXV")]
+        [TestCase(2016, "MMXVI")]
+        public void ToRomans_Number_ReturnRomanNumber(int value, string expected)
+        {
+            Assert.AreEqual(expected, value.ToRomans());
+        }
+
+        [TestCase(-1)]
+        [TestCase(5000)]
+        public void ToRomans_NumberInvalid_ReturnRomanNumber(int value)
+        {
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToRomans());
+
+            StringAssert.Contains("value", ex.ParamName);
         }
     }
 }
