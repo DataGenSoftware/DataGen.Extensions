@@ -1,23 +1,23 @@
-﻿using DataGen.Extensions.NumberInWords.Common;
+﻿using DataGen.Extensions.NumberToWords.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions.NumberInWords.En
+namespace DataGen.Extensions.NumberToWords.En
 {
-    public class NumberInWordsService: Common.NumberInWordsService
+    public class NumberToWordsService: Common.NumberToWordsService
     {
         private Common.NumeralsRepository NumeralsRepository { get; set; }
 
-        public NumberInWordsService(Common.NumeralsRepository numeralsRepository)
+        public NumberToWordsService(Common.NumeralsRepository numeralsRepository)
         {
             this.NumeralsRepository = numeralsRepository;
         }
 
         public override string InWords(int value)
         {
-            if (value < 1 || value > 999999999)
+            if (value < 0 || value > 999999999)
             {
                 throw new ArgumentOutOfRangeException("value");
             }

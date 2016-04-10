@@ -1,6 +1,7 @@
-﻿using DataGen.Extensions.NumberInRomans;
-using DataGen.Extensions.NumberInWords;
-using DataGen.Extensions.NumberInWords.Common;
+﻿using DataGen.Extensions;
+using DataGen.Extensions.RomanNumerals;
+using DataGen.Extensions.NumberToWords;
+using DataGen.Extensions.NumberToWords.Common;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace DataGen.Extentions.UnitTests
 {
     [TestFixture]
-    public class IntegerExtensionsTests
+    public class NumberExtensionsTests
     {
         [TestCase(1, "jeden", "pl-PL")]
         [TestCase(100, "sto", "pl-PL")]
@@ -22,6 +23,7 @@ namespace DataGen.Extentions.UnitTests
         [TestCase(1234567, "jeden milion dwieście trzydzieści cztery tysiące pięćset sześćdziesiąt siedem", "pl-PL")]
         [TestCase(123456789, "sto dwadzieścia trzy miliony czterysta pięćdziesiąt sześć tysięcy siedemset osiemdziesiąt dziewięć", "pl-PL")]
 
+        [TestCase(0, "", "en-US")]
         [TestCase(1, "one", "en-US")]
         [TestCase(100, "one hundred", "en-US")]
         [TestCase(101, "one hundred one", "en-US")]
@@ -33,28 +35,27 @@ namespace DataGen.Extentions.UnitTests
 
         public void InWords_Number_ReturnsWords(int value, string expected, string cultureName)
         {
-            var service = this.CreateNumberInWordsService(cultureName);
-
-            var actual = service.InWords(value);
+            var actual = value.ToWords(cultureName);
 
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void CreateNumberInWordsService_InvalidCultureName_ThrowsArgumentException()
+        [TestCase(-1)]
+        [TestCase(3000000000)]
+        public void ToRomans_NumberOutOfRangeException_ReturnRomanNumber(long value)
         {
-            var ex = Assert.Throws<ArgumentException>(() => this.CreateNumberInWordsService("xx-XX"));
+            var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToWords("en-US"));
+
+            StringAssert.Contains("value", ex.ParamName);
+        }
+
+        [Test]
+        public void ToWords_InvalidCultureName_ThrowsArgumentException()
+        {
+            var ex = Assert.Throws<ArgumentException>(() => 1.ToWords("xx-XX"));
 
             StringAssert.Contains("Invalid argument", ex.Message);
             StringAssert.Contains("cultureName", ex.ParamName);
-        }
-
-        private NumberInWordsService CreateNumberInWordsService(string cultureName)
-        {
-            var numberInWordsFactoryCreator = new NumberInWordsFactoryCreator();
-            var numberInWordsFactory = numberInWordsFactoryCreator.CreateFactory(cultureName);
-            var numeralsRepository = numberInWordsFactory.CreateNumeralsRepository();
-            return numberInWordsFactory.CreateNumberInWordsService(numeralsRepository);
         }
 
         [TestCase(0, "")]
@@ -68,7 +69,7 @@ namespace DataGen.Extentions.UnitTests
 
         [TestCase(-1)]
         [TestCase(5000)]
-        public void ToRomans_NumberInvalid_ReturnRomanNumber(int value)
+        public void ToRomans_NumberOutOfRangeException_ThrowsArgumentOutOfRangeException(int value)
         {
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToRomans());
 

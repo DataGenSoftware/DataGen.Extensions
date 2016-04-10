@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions.NumberInRomans
+namespace DataGen.Extensions.RomanNumerals
 {
     
     public class RomanNumeralsRepository:IRomanNumeralsRepository

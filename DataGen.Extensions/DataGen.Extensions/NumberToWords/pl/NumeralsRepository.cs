@@ -1,10 +1,10 @@
-﻿using DataGen.Extensions.NumberInWords.Common;
+﻿using DataGen.Extensions.NumberToWords.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions.NumberInWords.Pl
+namespace DataGen.Extensions.NumberToWords.Pl
 {
     public class NumeralsRepository : Common.NumeralsRepository
     {

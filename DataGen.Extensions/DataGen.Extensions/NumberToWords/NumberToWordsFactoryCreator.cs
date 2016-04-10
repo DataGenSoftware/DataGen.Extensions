@@ -1,26 +1,26 @@
-﻿using DataGen.Extensions.NumberInWords.Common;
+﻿using DataGen.Extensions.NumberToWords.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions.NumberInWords
+namespace DataGen.Extensions.NumberToWords
 {
     /// <summary>
     /// Simple factory, creates factory for making families of related objects
     /// </summary>
     /// TODO: Implement singleton
-    public class NumberInWordsFactoryCreator
+    public class NumberToWordsFactoryCreator
     {
-        public NumberInWordsFactory CreateFactory(string cultureName)
+        public NumberToWordsFactory CreateFactory(string cultureName)
         {
             if (cultureName.StartsWith("en"))
             {
-                return new En.NumberInWordsFactory();
+                return new En.NumberToWordsFactory();
             }
             else if (cultureName.StartsWith("pl"))
             {
-                return new Pl.NumberInWordsFactory();
+                return new Pl.NumberToWordsFactory();
             }
 
             throw new ArgumentException("Invalid argument.", "cultureName");

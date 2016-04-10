@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions.NumberInWords.Common
+namespace DataGen.Extensions.NumberToWords.Common
 {
     public enum NumeralGrammaticalCase
     {
