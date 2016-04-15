@@ -42,7 +42,7 @@ namespace DataGen.Extentions.UnitTests
 
         [TestCase(-1)]
         [TestCase(3000000000)]
-        public void ToRomans_NumberOutOfRangeException_ReturnRomanNumber(long value)
+        public void ToRomans_NumberOutOfRange_ThrowsArgumentOutOfRangeException(long value)
         {
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToWords("en-US"));
 
@@ -67,13 +67,32 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(expected, value.ToRomans());
         }
 
-        [TestCase(-1)]
-        [TestCase(5000)]
-        public void ToRomans_NumberOutOfRangeException_ThrowsArgumentOutOfRangeException(int value)
+        [TestCase(3, 2, 5)]
+        [TestCase(7, 5, 9)]
+        [TestCase(4, 4, 4)]
+        public void IsInRange_NumberInRange_ReturnsTrue(int value, int begin, int end)
         {
-            var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToRomans());
+            var actual = value.IsInRange(begin, end);
 
-            StringAssert.Contains("value", ex.ParamName);
+            Assert.IsTrue(actual);
+        }
+
+        [TestCase(1, 2, 5)]
+        [TestCase(10, 5, 9)]
+        public void IsInRange_NumberOutOfRange_ReturnsFalse(int value, int begin, int end)
+        {
+            var actual = value.IsInRange(begin, end);
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestCase(1, 5, 2)]
+        public void IsInRange_IncorrectRange_ThrowsArgumentException(int value, int begin, int end)
+        {
+            var ex = Assert.Throws<ArgumentException>(() => value.IsInRange(begin, end));
+
+            StringAssert.Contains("The begining value of the range cannot be greater that the end value of the range", ex.Message);
+            StringAssert.Contains("begin", ex.ParamName);
         }
     }
 }
