@@ -83,7 +83,6 @@ namespace DataGen.Extentions.UnitTests
         public void IsInRange_NumberOutOfRange_ReturnsFalse<T>(T value, T begin, T end)
             where T : IComparable
         {
-            var x = 10.3M;
             var actual = value.IsInRange(begin, end);
 
             Assert.IsFalse(actual);
