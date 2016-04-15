@@ -68,9 +68,10 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [TestCase(3, 2, 5)]
-        [TestCase(7, 5, 9)]
+        [TestCase(7.5, 5.1, 9.2)]
         [TestCase(4, 4, 4)]
-        public void IsInRange_NumberInRange_ReturnsTrue(int value, int begin, int end)
+        public void IsInRange_NumberInRange_ReturnsTrue<T>(T value, T begin, T end)
+            where T : IComparable
         {
             var actual = value.IsInRange(begin, end);
 
@@ -78,16 +79,19 @@ namespace DataGen.Extentions.UnitTests
         }
 
         [TestCase(1, 2, 5)]
-        [TestCase(10, 5, 9)]
-        public void IsInRange_NumberOutOfRange_ReturnsFalse(int value, int begin, int end)
+        [TestCase(10.2, 5.0, 9.0)]
+        public void IsInRange_NumberOutOfRange_ReturnsFalse<T>(T value, T begin, T end)
+            where T : IComparable
         {
+            var x = 10.3M;
             var actual = value.IsInRange(begin, end);
 
             Assert.IsFalse(actual);
         }
 
         [TestCase(1, 5, 2)]
-        public void IsInRange_IncorrectRange_ThrowsArgumentException(int value, int begin, int end)
+        public void IsInRange_IncorrectRange_ThrowsArgumentException<T>(T value, T begin, T end)
+            where T : IComparable
         {
             var ex = Assert.Throws<ArgumentException>(() => value.IsInRange(begin, end));
 

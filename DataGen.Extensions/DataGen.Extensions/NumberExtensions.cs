@@ -13,48 +13,43 @@ namespace DataGen.Extensions
 
         public static bool IsInRange(this int value, int begin, int end)
         {
-            return ((long)value).IsInRange((long)begin, (long)end);
+            return value.IsInRange<int>(begin, end);
         }
-        
 
         public static bool IsInRange(this short value, short begin, short end)
         {
-            return ((long)value).IsInRange((long)begin, (long)end);
+            return value.IsInRange<short>(begin, end);
         }
 
         public static bool IsInRange(this long value, long begin, long end)
         {
-            if (begin > end)
-            {
-                throw new ArgumentException(NumberExtensions.IsInRangeArgumentExceptionMessage, NumberExtensions.IsInRangeArgumentExceptionParamName);
-            }
-
-            return value >= begin && value <= end;
+            return value.IsInRange<long>(begin, end);
         }
 
         public static bool IsInRange(this decimal value, decimal begin, decimal end)
         {
-            if (begin > end)
-            {
-                throw new ArgumentException(NumberExtensions.IsInRangeArgumentExceptionMessage, NumberExtensions.IsInRangeArgumentExceptionParamName);
-            }
-
-            return value >= begin && value <= end;
+            return value.IsInRange<decimal>(begin, end);
         }
 
         public static bool IsInRange(this float value, float begin, float end)
         {
-            return ((double)value).IsInRange((double)begin, (double)end);
+            return value.IsInRange<float>(begin, end);
         }
 
         public static bool IsInRange(this double value, double begin, double end)
         {
-            if (begin > end)
+            return value.IsInRange<double>(begin, end);
+        }
+
+        public static bool IsInRange<T>(this T value, T begin, T end)
+            where T :IComparable
+        {
+            if (begin.CompareTo(end) > 0)
             {
                 throw new ArgumentException(NumberExtensions.IsInRangeArgumentExceptionMessage, NumberExtensions.IsInRangeArgumentExceptionParamName);
             }
 
-            return value >= begin && value <= end;
+            return value.CompareTo(begin) >= 0 && value.CompareTo(end) <= 0;
         }
     }
 }
