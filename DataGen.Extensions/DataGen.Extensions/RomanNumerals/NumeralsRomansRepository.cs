@@ -6,12 +6,11 @@ using System.Text;
 
 namespace DataGen.Extensions.RomanNumerals
 {
-    
-    public class RomanNumeralsRepository:IRomanNumeralsRepository
+    public class NumeralsRomansRepository : INumeralsRomansRepository
     {
-        public IDictionary<int, string> Dictionary { get; set;  }
+        public IDictionary<int, string> Dictionary { get; set; }
 
-        public RomanNumeralsRepository()
+        public NumeralsRomansRepository()
         {
             this.Dictionary = this.GetRomanConstantNumerals;
         }
@@ -79,6 +78,5 @@ namespace DataGen.Extensions.RomanNumerals
                 yield return new Numeral { Value = 900, Symbol = "CM" };
             }
         }
-
     }
 }

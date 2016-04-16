@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataGen.Extensions.RomanNumerals
 {
-    public interface IRomanNumeralsRepository
+    public interface INumeralsRomansRepository
     {
         IDictionary<int, string> Dictionary { get; set; }
 

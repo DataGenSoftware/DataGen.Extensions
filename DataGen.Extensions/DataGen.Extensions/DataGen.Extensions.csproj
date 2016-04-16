@@ -78,9 +78,11 @@
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="NumberToWords\NumberToWordsExtensions.cs" />
-    <Compile Include="RomanNumerals\Common\IRomanNumeralsRepository.cs" />
+    <Compile Include="RomanNumerals\Common\IRomansNumeralsRepository.cs" />
+    <Compile Include="RomanNumerals\Common\INumeralsRomansRepository.cs" />
     <Compile Include="RomanNumerals\Common\Numeral.cs" />
-    <Compile Include="RomanNumerals\RomanNumeralsRepository.cs" />
+    <Compile Include="RomanNumerals\RomansNumeralsRepository.cs" />
+    <Compile Include="RomanNumerals\NumeralsRomansRepository.cs" />
     <Compile Include="RomanNumerals\RomanNumeralsExtensions.cs" />
     <Compile Include="NumberToWords\Common\NumberToWordsFactory.cs" />
     <Compile Include="NumberToWords\Common\NumberToWordsService.cs" />

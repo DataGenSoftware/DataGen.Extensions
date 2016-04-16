@@ -8,11 +8,14 @@ namespace DataGen.Extensions.RomanNumerals
 {
     public static class RomanNumeralsExtensions
     {
-        private static IRomanNumeralsRepository RomanNumeralsRepository { get; set; }
+        private static INumeralsRomansRepository NumeralsRomansRepository { get; set; }
+
+        private static IRomansNumeralsRepository RomansNumeralsRepository { get; set; }
 
         static RomanNumeralsExtensions()
         {
-            RomanNumeralsRepository = new RomanNumeralsRepository();
+            NumeralsRomansRepository = new NumeralsRomansRepository();
+            RomansNumeralsRepository = new RomansNumeralsRepository();
         }
 
         public static string ToRomans(this short value)
@@ -36,9 +39,29 @@ namespace DataGen.Extensions.RomanNumerals
 
             while (value > 0)
             {
-                int operatorValue = RomanNumeralsRepository.Dictionary.OrderByDescending(x => x.Key).First(x => value >= x.Key).Key;
-                result += RomanNumeralsRepository.Get(operatorValue);
+                int operatorValue = NumeralsRomansRepository.Dictionary.OrderByDescending(x => x.Key).First(x => value >= x.Key).Key;
+                result += NumeralsRomansRepository.Get(operatorValue);
                 value -= operatorValue;
+            }
+
+            return result;
+        }
+
+        public static int ParseRomans(this string value)
+        {
+            var result = 0;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!RomansNumeralsRepository.Dictionary.ContainsKey(value[i]))
+                {
+                    throw new ArgumentException();
+                }
+
+                if (i < value.Length - 1 && RomansNumeralsRepository.Dictionary[value[i]] < RomansNumeralsRepository.Dictionary[value[i + 1]])
+                    result -= RomansNumeralsRepository.Dictionary[value[i]];
+                else
+                    result += RomansNumeralsRepository.Dictionary[value[i]];
             }
 
             return result;

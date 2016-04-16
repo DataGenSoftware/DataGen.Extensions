@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataGen.Extensions;
 using DataGen.Extensions.Cryptography;
+using DataGen.Extensions.RomanNumerals;
 
 namespace DataGen.Extentions.UnitTests
 {
@@ -72,6 +73,22 @@ namespace DataGen.Extentions.UnitTests
             var actual = value.LeadWithChar(character, length);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("IX", 9)]
+        [TestCase("MCMXCIV", 1994)]
+        [TestCase("", 0)]
+        public void StringParseRomans_Romans_ReturnsNumber(string value, int expected)
+        {
+            var actual = value.ParseRomans();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("Q", 0)]
+        public void StringParseRomans_InvalidRoman_ThrowsArgumentException(string value, int expected)
+        {
+            Assert.Throws<ArgumentException>(() => value.ParseRomans());
         }
 
         #region AES
