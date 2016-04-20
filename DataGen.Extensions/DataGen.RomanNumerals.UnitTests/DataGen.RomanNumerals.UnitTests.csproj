@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{94B2E295-727B-4F56-BAFA-C3FA2651D22D}</ProjectGuid>
+    <ProjectGuid>{82B82A62-24BD-47E9-AC91-74A57185FA24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataGen.Extentions.UnitTests</RootNamespace>
-    <AssemblyName>DataGen.Extentions.UnitTests</AssemblyName>
+    <RootNamespace>DataGen.RomanNumerals.UnitTests</RootNamespace>
+    <AssemblyName>DataGen.RomanNumerals.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,25 +68,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ByteExtensionsTests.cs" />
-    <Compile Include="CharExtensionsTests.cs" />
-    <Compile Include="EnumExtensionsTests.cs" />
-    <Compile Include="NumberExtensionsTests.cs" />
-    <Compile Include="ObjectExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensionsTests.cs" />
+    <Compile Include="RomanNumeralsExtensionsTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataGen.RomanNumerals\DataGen.RomanNumerals.csproj">
+      <Project>{ad50d653-3c28-42fd-b564-220599f9662a}</Project>
+      <Name>DataGen.RomanNumerals</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataGen.Extensions\DataGen.Extensions.csproj">
-      <Project>{e4efbe53-b7f8-4807-87dc-1a66ef024c68}</Project>
-      <Name>DataGen.Extensions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

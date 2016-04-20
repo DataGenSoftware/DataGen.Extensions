@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{54F7959B
 		NuGet\DataGen.Extensions.nuspec = NuGet\DataGen.Extensions.nuspec
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.RomanNumerals", "DataGen.RomanNumerals\DataGen.RomanNumerals.csproj", "{AD50D653-3C28-42FD-B564-220599F9662A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.RomanNumerals.UnitTests", "DataGen.RomanNumerals.UnitTests\DataGen.RomanNumerals.UnitTests.csproj", "{82B82A62-24BD-47E9-AC91-74A57185FA24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,26 @@ Global
 		{69674329-AC52-4067-8DA8-AB46233646BD}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
 		{69674329-AC52-4067-8DA8-AB46233646BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69674329-AC52-4067-8DA8-AB46233646BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD50D653-3C28-42FD-B564-220599F9662A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82B82A62-24BD-47E9-AC91-74A57185FA24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
