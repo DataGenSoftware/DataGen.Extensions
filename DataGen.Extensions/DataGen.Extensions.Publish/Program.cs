@@ -14,19 +14,70 @@ namespace DataGen.Extensions.Publish
     {
         static void Main(string[] args)
         {
-            currentVersion = GetAssemblyCurrentVersion();
+            DisplayProductMenu();
+        }
+
+        private static string ProductName;
+
+        private static Version CurrentVersion;
+
+        private static string GetCurrentVersionString()
+        {
+            if (CurrentVersion.IsNull())
+                return string.Empty;
+
+            return string.Format("{0}.{1}.{2}", CurrentVersion.Major, CurrentVersion.Minor, CurrentVersion.Build);
+        }
+
+        private static void DisplayProductMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("---Product menu---");
+            Console.WriteLine("1 - DataGen.Extensions");
+            Console.WriteLine("2 - DataGen.RomanNumerals");
+            Console.WriteLine("3 - Datagen.NumberToWords");
+            Console.WriteLine("0 - Exit");
+
+            GetUserCommand(new Action<string>(HandleProductMenuCommand));
+        }
+
+        private static void GetUserCommand(Action<string> menuCommandHandler)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+            menuCommandHandler(key.KeyChar.ToString());
+        }
+
+        private static void HandleProductMenuCommand(string command)
+        {
+            switch (command)
+            {
+                case "1":
+                    ChangeProduct("DataGen.Extensions");
+                    break;
+                case "2":
+                    ChangeProduct("DataGen.RomanNumerals");
+                    break;
+                case "3":
+                    ChangeProduct("DataGen.NumberToWords");
+                    break;
+                case "0":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    WrongCommand();
+                    break;
+            }
 
             DisplayMainMenu();
         }
 
-        private static Version currentVersion;
-
-        private static string GetCurrentVersionString()
+        private static void ChangeProduct(string productName)
         {
-            if (currentVersion.IsNull())
-                return string.Empty;
+            ProductName = productName;
+            CurrentVersion = GetAssemblyCurrentVersion();
 
-            return string.Format("{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor, currentVersion.Build);
+            DisplayMainMenu();
         }
 
         private static void DisplayMainMenu()
@@ -36,16 +87,9 @@ namespace DataGen.Extensions.Publish
             Console.WriteLine("1 - Change verion");
             Console.WriteLine("2 - Rebuild");
             Console.WriteLine("3 - Publish to NuGet");
-            Console.WriteLine("0 - Exit");
+            Console.WriteLine("0 - Product menu");
 
             GetUserCommand(new Action<string>(HandleMainMenuCommand));
-        }
-
-        private static void GetUserCommand(Action<string> menuCommandHandler)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
-            menuCommandHandler(key.KeyChar.ToString());
         }
 
         private static void HandleMainMenuCommand(string command)
@@ -62,7 +106,7 @@ namespace DataGen.Extensions.Publish
                     Publish();
                     break;
                 case "0":
-                    Environment.Exit(0);
+                    DisplayProductMenu();
                     break;
                 default:
                     WrongCommand();
@@ -82,14 +126,14 @@ namespace DataGen.Extensions.Publish
         private static void RebuildProjectWithConfiguration(string configurationName)
         {
             string fileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe";
-            string arguments = "..\\..\\..\\DataGen.Extensions\\DataGen.Extensions.csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
+            string arguments = "..\\..\\..\\" + ProductName + "\\" + ProductName + ".csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
             Process(fileName, arguments);
         }
 
         private static Version GetAssemblyCurrentVersion()
         {
             string fileContent;
-            var fileName = "..\\..\\..\\DataGen.Extensions\\Properties\\AssemblyInfo.cs";
+            var fileName = "..\\..\\..\\" + ProductName + "\\Properties\\AssemblyInfo.cs";
             string regexPattern = "\\[assembly: AssemblyVersion\\(\\\"\\d+\\.\\d+\\.\\d+.\\*\\\"\\)\\]";
             Match match = GetVersionRegexMatch(fileName, regexPattern, out fileContent);
             if (match.Success)
@@ -163,17 +207,17 @@ namespace DataGen.Extensions.Publish
 
         private static void IncreaseBuildVersionNumber()
         {
-            currentVersion = new Version(string.Format("{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor, currentVersion.Build + 1));
+            CurrentVersion = new Version(string.Format("{0}.{1}.{2}", CurrentVersion.Major, CurrentVersion.Minor, CurrentVersion.Build + 1));
         }
 
         private static void IncreaseMinorVersionNumber()
         {
-            currentVersion = new Version(string.Format("{0}.{1}.{2}", currentVersion.Major, currentVersion.Minor + 1, 0));
+            CurrentVersion = new Version(string.Format("{0}.{1}.{2}", CurrentVersion.Major, CurrentVersion.Minor + 1, 0));
         }
 
         private static void IncreaseMajorVersionNumber()
         {
-            currentVersion = new Version(string.Format("{0}.{1}.{2}", currentVersion.Major + 1, 0, 0));
+            CurrentVersion = new Version(string.Format("{0}.{1}.{2}", CurrentVersion.Major + 1, 0, 0));
         }
 
         private static void EnterVersion()
@@ -182,7 +226,7 @@ namespace DataGen.Extensions.Publish
             string version = Console.ReadLine();
             if (Regex.Match(version, "^\\d+\\.\\d+\\.\\d+$").Success)
             {
-                currentVersion = new Version(version);
+                CurrentVersion = new Version(version);
             }
             else
             {
@@ -198,8 +242,8 @@ namespace DataGen.Extensions.Publish
 
         private static void CommitCurrentVersion()
         {
-            Git("add ..\\..\\..\\DataGen.Extensions\\Properties\\AssemblyInfo.cs");
-            Git("add ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec");
+            Git("add ..\\..\\..\\" + ProductName + "\\Properties\\AssemblyInfo.cs");
+            Git("add ..\\..\\..\\NuGet\\" + ProductName + ".nuspec");
             Git("commit -m \"Change version\"");
         }
 
@@ -244,7 +288,7 @@ namespace DataGen.Extensions.Publish
 
         private static void ChangeAssemblyInfoVerion()
         {
-            string fileName = "..\\..\\..\\DataGen.Extensions\\Properties\\AssemblyInfo.cs";
+            string fileName = "..\\..\\..\\" + ProductName + "\\Properties\\AssemblyInfo.cs";
             string regexPattern = "\\[assembly: AssemblyVersion\\(\\\"\\d+\\.\\d+\\.\\d+.\\*\\\"\\)\\]";
             string versionPlaceholder = "[assembly: AssemblyVersion(\"{0}.*\")]";
             ChangeVersionInFile(fileName, regexPattern, versionPlaceholder);
@@ -252,7 +296,7 @@ namespace DataGen.Extensions.Publish
 
         private static void ChangeNuSpecVersion()
         {
-            string fileName = "..\\..\\..\\NuGet\\DataGen.Extensions.nuspec";
+            string fileName = "..\\..\\..\\NuGet\\" + ProductName + ".nuspec";
             string regexPattern = "<version>\\d+\\.\\d+\\.\\d+</version>";
             string versionPlaceholder = "<version>{0}</version>";
             ChangeVersionInFile(fileName, regexPattern, versionPlaceholder);
@@ -281,14 +325,14 @@ namespace DataGen.Extensions.Publish
         private static void PackNuspec()
         {
             string fileName = "..\\..\\..\\Tools\\nuget.exe";
-            string arguments = "pack ..\\..\\..\\NuGet\\DataGen.Extensions.nuspec -OutputDirectory \"..\\..\\..\\NuGet\"";
+            string arguments = "pack ..\\..\\..\\NuGet\\" + ProductName + ".nuspec -OutputDirectory \"..\\..\\..\\NuGet\"";
             Process(fileName, arguments);
         }
 
         private static void PushNupkg()
         {
             string fileName = "..\\..\\..\\Tools\\nuget.exe";
-            string arguments = string.Format("push ..\\..\\..\\NuGet\\DataGen.Extensions.{0}.nupkg", GetCurrentVersionString());
+            string arguments = string.Format("push ..\\..\\..\\NuGet\\" + ProductName + ".{0}.nupkg", GetCurrentVersionString());
             Process(fileName, arguments);
         }
 
