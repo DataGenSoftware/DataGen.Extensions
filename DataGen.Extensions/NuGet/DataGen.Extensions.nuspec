@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>DataGen.Extensions</id>
-        <version>1.4.1</version>
-        <title>DataGen.Extensions</title>
+        <version>1.4.2</version>
+        <title>DataGen.Extensions .NET Extensions Library</title>
         <authors>Karol Habczyk</authors>
         <owners>Karol Habczyk</owners>
         <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
         <projectUrl>http://www.datagen.pl/extensions</projectUrl>
-        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>.NET types extensions</description>
         <copyright>Copyright © Karol Habczyk</copyright>
     </metadata>
