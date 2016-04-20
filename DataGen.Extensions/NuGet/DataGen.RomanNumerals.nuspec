@@ -2,15 +2,17 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>DataGen.RomanNumerals</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <title>DataGen.RomanNumerals Roman Numerals Extensions</title>
         <authors>Karol Habczyk</authors>
         <owners>Karol Habczyk</owners>
         <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
         <projectUrl>http://www.datagen.pl/extensions</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Roman numerals extensions</description>
-        <copyright>Copyright © Karol Habczyk</copyright>
+        <description>Roman numerals extensions.</description>
+		<summary>Roman numerals extensions.</summary>
+		<tags>.net extension library roman romans numeral numerals toromans parseromans parse</tags>
+		<copyright>Copyright © Karol Habczyk</copyright>
     </metadata>
     <files>
         <file src="..\DataGen.RomanNumerals\bin\Release\net35\DataGen.RomanNumerals.dll" target="lib\net35\DataGen.RomanNumerals.dll" />
