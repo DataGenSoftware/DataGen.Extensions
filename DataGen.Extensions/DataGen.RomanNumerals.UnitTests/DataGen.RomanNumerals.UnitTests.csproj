@@ -72,16 +72,16 @@
     <Compile Include="RomanNumeralsExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataGen.RomanNumerals\DataGen.RomanNumerals.csproj">
-      <Project>{ad50d653-3c28-42fd-b564-220599f9662a}</Project>
-      <Name>DataGen.RomanNumerals</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataGen.RomanNumerals\DataGen.RomanNumerals.csproj">
+      <Project>{d2170967-d5ac-403b-aae4-c4c955ec8e07}</Project>
+      <Name>DataGen.RomanNumerals</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
