@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>DataGen.RomanNumerals</id>
+        <version>1.0.1</version>
+        <title>DataGen.RomanNumerals</title>
+        <authors>Karol Habczyk</authors>
+        <owners>Karol Habczyk</owners>
+        <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
+        <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Roman numerals extensions</description>
+        <copyright>Copyright © Karol Habczyk</copyright>
+    </metadata>
+    <files>
+        <file src="..\DataGen.Extensions\bin\Release\net35\DataGen.RomanNumerals.dll" target="lib\net35\DataGen.RomanNumerals.dll" />
+        <file src="..\DataGen.Extensions\bin\Release\net40\DataGen.RomanNumerals.dll" target="lib\net40\DataGen.RomanNumerals.dll" />
+        <file src="..\DataGen.Extensions\bin\Release\net45\DataGen.RomanNumerals.dll" target="lib\net45\DataGen.RomanNumerals.dll" />
+    </files>
+</package>
