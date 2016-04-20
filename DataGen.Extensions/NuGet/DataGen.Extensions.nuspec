@@ -2,15 +2,17 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>DataGen.Extensions</id>
-        <version>1.4.2</version>
+        <version>1.4.3</version>
         <title>DataGen.Extensions .NET Extensions Library</title>
         <authors>Karol Habczyk</authors>
         <owners>Karol Habczyk</owners>
         <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
         <projectUrl>http://www.datagen.pl/extensions</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>.NET types extensions</description>
-        <copyright>Copyright © Karol Habczyk</copyright>
+        <description>.NET types extensions.</description>
+		<summary>Useful .NET types extensions library.</summary>
+		<tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool cryptography encryption des aes 3des tripledes word words towords roman romans toromans parseromans numerals numeral</tags>
+		<copyright>Copyright © Karol Habczyk</copyright>
     </metadata>
     <files>
         <file src="..\DataGen.Extensions\bin\Release\net35\DataGen.Extensions.dll" target="lib\net35\DataGen.Extensions.dll" />
