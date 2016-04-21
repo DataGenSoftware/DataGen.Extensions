@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>DataGen.NumberToWords</id>
+        <version>1.0.0</version>
+        <title>DataGen.NumberToWords Number To Words Extensions</title>
+        <authors>Karol Habczyk</authors>
+        <owners>Karol Habczyk</owners>
+        <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
+        <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>To words extensions.</description>
+		<summary>To words extensions.</summary>
+		<tags>.net extension extensions library helper method methods number int short long to in words towords inwords</tags>
+		<copyright>Copyright © Karol Habczyk</copyright>
+    </metadata>
+    <files>
+        <file src="..\DataGen.NumberToWords\bin\Release\net35\DataGen.NumberToWords.dll" target="lib\net35\DataGen.NumberToWords.dll" />
+        <file src="..\DataGen.NumberToWords\bin\Release\net40\DataGen.NumberToWords.dll" target="lib\net40\DataGen.NumberToWords.dll" />
+        <file src="..\DataGen.NumberToWords\bin\Release\net45\DataGen.NumberToWords.dll" target="lib\net45\DataGen.NumberToWords.dll" />
+    </files>
+</package>

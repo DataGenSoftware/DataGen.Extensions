@@ -11,7 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Roman numerals extensions.</description>
 		<summary>Roman numerals extensions.</summary>
-		<tags>.net extension library roman romans numeral numerals toromans parseromans parse</tags>
+		<tags>.net extension extensions library helper method methods roman romans numeral numerals toromans parseromans parse</tags>
 		<copyright>Copyright © Karol Habczyk</copyright>
     </metadata>
     <files>

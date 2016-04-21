@@ -18,16 +18,19 @@ namespace DataGen.Extensions.RomanNumerals
             RomansNumeralsRepository = new RomansNumeralsRepository();
         }
 
+        [Obsolete("Moved to DataGen.RomanNumerals.")]
         public static string ToRomans(this short value)
         {
             return ((int)value).ToRomans();
         }
 
+        [Obsolete("Moved to DataGen.RomanNumerals.")]
         public static string ToRomans(this long value)
         {
             return ((int)value).ToRomans();
         }
 
+        [Obsolete("Moved to DataGen.RomanNumerals.")]
         public static string ToRomans(this int value)
         {
             if (value < 0 || value > 4999)
@@ -47,6 +50,7 @@ namespace DataGen.Extensions.RomanNumerals
             return result;
         }
 
+        [Obsolete("Moved to DataGen.RomanNumerals.")]
         public static int ParseRomans(this string value)
         {
             var result = 0;
