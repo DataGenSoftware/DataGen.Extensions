@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>DataGen.Extensions</id>
-        <version>1.5.0</version>
-        <title>DataGen.Extensions .NET Extensions Library</title>
-        <authors>Karol Habczyk</authors>
-        <owners>Karol Habczyk</owners>
-        <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
-        <projectUrl>http://www.datagen.pl/extensions</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>.NET types extensions.</description>
-		<summary>Useful .NET types extensions library.</summary>
-		<tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool cryptography encryption des aes 3des tripledes word words towords roman romans toromans parseromans numerals numeral</tags>
-		<copyright>Copyright © Karol Habczyk</copyright>
-    </metadata>
-    <files>
-        <file src="..\DataGen.Extensions\bin\Release\net35\DataGen.Extensions.dll" target="lib\net35\DataGen.Extensions.dll" />
-        <file src="..\DataGen.Extensions\bin\Release\net40\DataGen.Extensions.dll" target="lib\net40\DataGen.Extensions.dll" />
-        <file src="..\DataGen.Extensions\bin\Release\net45\DataGen.Extensions.dll" target="lib\net45\DataGen.Extensions.dll" />
-    </files>
+  <metadata>
+    <id>DataGen.Extensions</id>
+    <version>1.5.0</version>
+    <title>DataGen.Extensions .NET Extensions Library</title>
+    <authors>Karol Habczyk</authors>
+    <owners>Karol Habczyk</owners>
+    <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET types extensions.</description>
+    <summary>Useful .NET types extensions library.</summary>
+    <tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool cryptography encryption des aes 3des tripledes word words towords roman romans toromans parseromans numerals numeral</tags>
+    <copyright>Copyright © Karol Habczyk</copyright>
+  </metadata>
+  <files>
+    <file src="..\DataGen.Extensions\bin\Release\net35\DataGen.Extensions.dll" target="lib\net35\DataGen.Extensions.dll" />
+    <file src="..\DataGen.Extensions\bin\Release\net40\DataGen.Extensions.dll" target="lib\net40\DataGen.Extensions.dll" />
+    <file src="..\DataGen.Extensions\bin\Release\net45\DataGen.Extensions.dll" target="lib\net45\DataGen.Extensions.dll" />
+  </files>
 </package>

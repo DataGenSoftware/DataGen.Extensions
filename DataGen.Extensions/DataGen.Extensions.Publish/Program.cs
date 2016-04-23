@@ -12,9 +12,33 @@ namespace DataGen.Extensions.Publish
 {
     class Program
     {
+        private static IDictionary<int, string> Products { get; set; }
+        private static IEnumerable<string> BuildConfigurations { get; set; }
+
         static void Main(string[] args)
         {
+            Products = GetProducts();
+
+            BuildConfigurations = GetBuildConfigurations();
+
             DisplayProductMenu();
+        }
+
+        private static IDictionary<int, string> GetProducts()
+        {
+            return new Dictionary<int, string>()
+            {
+                { 1, "DataGen.Extensions"},
+                { 2, "DataGen.RomanNumerals"},
+                { 3, "DataGen.NumberToWords"},
+            };
+        }
+
+        private static IEnumerable<string> GetBuildConfigurations()
+        {
+            yield return "Release 3.5";
+            yield return "Release 4.0";
+            yield return "Release 4.5";
         }
 
         private static string ProductName;
@@ -33,9 +57,10 @@ namespace DataGen.Extensions.Publish
         {
             Console.WriteLine();
             Console.WriteLine("---Product menu---");
-            Console.WriteLine("1 - DataGen.Extensions");
-            Console.WriteLine("2 - DataGen.RomanNumerals");
-            Console.WriteLine("3 - Datagen.NumberToWords");
+            foreach (var product in Products)
+            {
+                Console.WriteLine(string.Format("{0} - {1}", product.Key, product.Value));
+            }
             Console.WriteLine("0 - Exit");
 
             GetUserCommand(new Action<string>(HandleProductMenuCommand));
@@ -118,9 +143,10 @@ namespace DataGen.Extensions.Publish
 
         private static void Rebuild()
         {
-            RebuildProjectWithConfiguration("Release 3.5");
-            RebuildProjectWithConfiguration("Release 4.0");
-            RebuildProjectWithConfiguration("Release 4.5");
+            foreach (var buildConfiguration in BuildConfigurations)
+            {
+                RebuildProjectWithConfiguration(buildConfiguration);
+            }
         }
 
         private static void RebuildProjectWithConfiguration(string configurationName)
@@ -146,6 +172,8 @@ namespace DataGen.Extensions.Publish
             return new Version();
         }
 
+        
+
         private static Match GetVersionRegexMatch(string fileName, string regexPattern, out string fileContent)
         {
             fileContent = File.ReadAllText(fileName);
@@ -160,9 +188,10 @@ namespace DataGen.Extensions.Publish
             Console.WriteLine("1 - Increase build version number");
             Console.WriteLine("2 - Increase minor version number");
             Console.WriteLine("3 - Increase major version number");
-            Console.WriteLine("4 - Enter version");
+            Console.WriteLine("4 - Change version");
             Console.WriteLine("5 - Show current version");
             Console.WriteLine("6 - Commit current version");
+            Console.WriteLine("7 - Update dependencies version");
             Console.WriteLine("0 - Main menu");
 
             GetUserCommand(new Action<string>(HandleChangeVersionMenuCommand));
@@ -193,6 +222,9 @@ namespace DataGen.Extensions.Publish
                     break;
                 case "6":
                     CommitCurrentVersion();
+                    break;
+                case "7":
+                    UpdateDependenciesVersion();
                     break;
                 case "0":
                     DisplayMainMenu();
@@ -302,14 +334,30 @@ namespace DataGen.Extensions.Publish
             ChangeVersionInFile(fileName, regexPattern, versionPlaceholder);
         }
 
-        private static void ChangeVersionInFile(string fileName, string regexPattern, string versionPlaceholder)
+        private static void UpdateDependenciesVersion()
+        {
+            foreach (var product in Products)
+            {
+                UpdateDependencyVersion(product.Value);
+            }
+        }
+
+        private static void UpdateDependencyVersion(string dependentProduct)
+        {
+            string fileName = "..\\..\\..\\NuGet\\" + dependentProduct + ".nuspec";
+            string regexPattern = "<dependency id=\"" + ProductName + "\" version=\"\\d+\\.\\d+\\.\\d+\" />";
+            string placeholder = "<dependency id=\"" + ProductName + "\" version=\"{0}\" />";
+            ChangeVersionInFile(fileName, regexPattern, placeholder);
+        }
+
+        private static void ChangeVersionInFile(string fileName, string regexPattern, string placeholder)
         {
             string fileContent;
             
             Match match = GetVersionRegexMatch(fileName, regexPattern, out fileContent);
             if (match.Success)
             {
-                fileContent = fileContent.Replace(match.Value, string.Format(versionPlaceholder, GetCurrentVersionString()));
+                fileContent = fileContent.Replace(match.Value, string.Format(placeholder, GetCurrentVersionString()));
             }
 
             File.WriteAllText(fileName, fileContent);

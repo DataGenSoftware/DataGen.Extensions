@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>DataGen.RomanNumerals</id>
-        <version>1.0.3</version>
-        <title>DataGen.RomanNumerals Roman Numerals Extensions</title>
-        <authors>Karol Habczyk</authors>
-        <owners>Karol Habczyk</owners>
-        <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
-        <projectUrl>http://www.datagen.pl/extensions</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Roman numerals extensions.</description>
-		<summary>Roman numerals extensions.</summary>
-		<tags>.net extension extensions library helper method methods roman romans numeral numerals toromans parseromans parse</tags>
-		<copyright>Copyright © Karol Habczyk</copyright>
-    </metadata>
-    <files>
-        <file src="..\DataGen.RomanNumerals\bin\Release\net35\DataGen.RomanNumerals.dll" target="lib\net35\DataGen.RomanNumerals.dll" />
-        <file src="..\DataGen.RomanNumerals\bin\Release\net40\DataGen.RomanNumerals.dll" target="lib\net40\DataGen.RomanNumerals.dll" />
-        <file src="..\DataGen.RomanNumerals\bin\Release\net45\DataGen.RomanNumerals.dll" target="lib\net45\DataGen.RomanNumerals.dll" />
-    </files>
+  <metadata>
+    <id>DataGen.RomanNumerals</id>
+    <version>1.0.3</version>
+    <title>DataGen.RomanNumerals Roman Numerals Extensions</title>
+    <authors>Karol Habczyk</authors>
+    <owners>Karol Habczyk</owners>
+    <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Roman numerals extensions.</description>
+    <summary>Roman numerals extensions.</summary>
+    <tags>.net extension extensions library helper method methods roman romans numeral numerals toromans parseromans parse</tags>
+    <copyright>Copyright © Karol Habczyk</copyright>
+  </metadata>
+  <files>
+    <file src="..\DataGen.RomanNumerals\bin\Release\net35\DataGen.RomanNumerals.dll" target="lib\net35\DataGen.RomanNumerals.dll" />
+    <file src="..\DataGen.RomanNumerals\bin\Release\net40\DataGen.RomanNumerals.dll" target="lib\net40\DataGen.RomanNumerals.dll" />
+    <file src="..\DataGen.RomanNumerals\bin\Release\net45\DataGen.RomanNumerals.dll" target="lib\net45\DataGen.RomanNumerals.dll" />
+  </files>
+  <dependencies>
+    <group>
+      <dependency id="DataGen.Extensions" version="1.5.0" />
+    </group>
+  </dependencies>
 </package>
