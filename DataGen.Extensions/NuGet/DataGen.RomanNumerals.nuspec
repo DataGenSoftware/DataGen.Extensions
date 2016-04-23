@@ -13,13 +13,15 @@
     <summary>Roman numerals extensions.</summary>
     <tags>.net extension extensions library helper method methods roman romans numeral numerals toromans parseromans parse</tags>
     <copyright>Copyright © Karol Habczyk</copyright>
+    <dependencies>
+      <group>
+        <dependency id="DataGen.Extensions" version="1.5.1" />
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="..\DataGen.RomanNumerals\bin\Release\net35\DataGen.RomanNumerals.dll" target="lib\net35\DataGen.RomanNumerals.dll" />
     <file src="..\DataGen.RomanNumerals\bin\Release\net40\DataGen.RomanNumerals.dll" target="lib\net40\DataGen.RomanNumerals.dll" />
     <file src="..\DataGen.RomanNumerals\bin\Release\net45\DataGen.RomanNumerals.dll" target="lib\net45\DataGen.RomanNumerals.dll" />
   </files>
-  <dependencies>
-      <dependency id="DataGen.Extensions" version="1.5.1" />
-  </dependencies>
 </package>
