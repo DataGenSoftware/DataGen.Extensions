@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>DataGen.RomanNumerals</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>DataGen.RomanNumerals Roman Numerals Extensions</title>
     <authors>Karol Habczyk</authors>
     <owners>Karol Habczyk</owners>
@@ -20,8 +20,6 @@
     <file src="..\DataGen.RomanNumerals\bin\Release\net45\DataGen.RomanNumerals.dll" target="lib\net45\DataGen.RomanNumerals.dll" />
   </files>
   <dependencies>
-    <group>
-      <dependency id="DataGen.Extensions" version="1.5.0" />
-    </group>
+      <dependency id="DataGen.Extensions" version="1.5.1" />
   </dependencies>
 </package>
