@@ -108,7 +108,7 @@ namespace DataGen.Extensions.Publish
         private static void DisplayMainMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("---Main menu---");
+            Console.WriteLine(string.Format("---{0} Main menu---", ProductName));
             Console.WriteLine("1 - Change verion");
             Console.WriteLine("2 - Rebuild");
             Console.WriteLine("3 - Publish to NuGet");
@@ -184,7 +184,7 @@ namespace DataGen.Extensions.Publish
         private static void DisplayChangeVersionMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("---Change version menu---");
+            Console.WriteLine(string.Format("---{0} Change version menu---", ProductName));
             Console.WriteLine("1 - Increase build version number");
             Console.WriteLine("2 - Increase minor version number");
             Console.WriteLine("3 - Increase major version number");
