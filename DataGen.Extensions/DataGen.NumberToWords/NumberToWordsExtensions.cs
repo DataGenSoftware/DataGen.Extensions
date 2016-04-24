@@ -45,7 +45,7 @@ namespace DataGen.NumberToWords
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 

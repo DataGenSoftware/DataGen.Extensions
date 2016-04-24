@@ -31,6 +31,7 @@ namespace DataGen.Extensions.Publish
                 { 1, "DataGen.Extensions"},
                 { 2, "DataGen.RomanNumerals"},
                 { 3, "DataGen.NumberToWords"},
+                { 4, "DataGen.Cryptography"},
             };
         }
 
@@ -85,6 +86,9 @@ namespace DataGen.Extensions.Publish
                     break;
                 case "3":
                     ChangeProduct("DataGen.NumberToWords");
+                    break;
+                case "4":
+                    ChangeProduct("DataGen.Cryptography");
                     break;
                 case "0":
                     Environment.Exit(0);
@@ -152,7 +156,7 @@ namespace DataGen.Extensions.Publish
         private static void RebuildProjectWithConfiguration(string configurationName)
         {
             string fileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe";
-            string arguments = "..\\..\\..\\" + ProductName + "\\" + ProductName + ".csproj /nologo /v:m /t:Rebuild /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
+            string arguments = "..\\..\\..\\" + ProductName + "\\" + ProductName + ".csproj /nologo /v:m /t:Rebuild /p:WarningLevel=0 /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
             Process(fileName, arguments);
         }
 

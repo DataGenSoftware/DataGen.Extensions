@@ -5,11 +5,10 @@ using System.Security.Cryptography;
 using System.Text;
 using DataGen.Extensions;
 
-namespace DataGen.Extensions.Cryptography
+namespace DataGen.Cryptography
 {
     public static class ByteExtensions
 	{
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] ComputeHash(this byte[] value, HashAlgorithm hashAlgorithm)
 		{
 			if (value.IsNotNull() == true)
@@ -20,7 +19,6 @@ namespace DataGen.Extensions.Cryptography
 				return null;
 		}
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static bool VerifyHash(this byte[] value, byte[] hash, HashAlgorithm hashAlgorithm)
 		{
             byte[] hashToCompare = value.ComputeHash(hashAlgorithm);
@@ -46,19 +44,16 @@ namespace DataGen.Extensions.Cryptography
             return true;
 		}
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] MD5ComputeHash(this byte[] value)
 		{
 			return value.ComputeHash(MD5.Create());
 		}
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static bool MD5VerifyHash(this byte[] value, byte[] hash)
 		{
 			return value.VerifyHash(hash, MD5.Create());
 		}
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] SymmetricAlgorithmEncrypt(this byte[] value, SymmetricAlgorithm symmetricAlgorithm, byte[] key)
         {
             if (value.IsNotNull() && key.IsNotNull())
@@ -75,7 +70,6 @@ namespace DataGen.Extensions.Cryptography
                 return null;
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] SymmetricAlgorithmDecrypt(this byte[] value, SymmetricAlgorithm symmetricAlgorithm, byte[] key)
         {
             if (value.IsNotNull() && key.IsNotNull())
@@ -92,7 +86,6 @@ namespace DataGen.Extensions.Cryptography
                 return null;
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] AESEncrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -101,7 +94,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(16, password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] AESDecrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -110,7 +102,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(16, password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] DESEncrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -119,7 +110,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(8, password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] DESDecrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -128,7 +118,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(8, password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] RC2Encrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -137,7 +126,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] RC2Decrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -146,7 +134,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmDecrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] TripleDESEncrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
@@ -155,7 +142,6 @@ namespace DataGen.Extensions.Cryptography
             return data.SymmetricAlgorithmEncrypt(symmetricAlgorithm, keyFactory.CreateKey(password));
         }
 
-        [Obsolete("Moved to DataGen.Cryptography.")]
         public static byte[] TripleDESDecrypt(this byte[] data, string password)
         {
             SymmetricAlgorithmFactory algorithmFactory = new SymmetricAlgorithmFactory();
