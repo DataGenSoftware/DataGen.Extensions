@@ -63,6 +63,7 @@ namespace DataGen.Extensions.Publish
             {
                 Console.WriteLine(string.Format("{0} - {1}", product.Key, product.Value));
             }
+            Console.WriteLine("9 - Full process for all");
             Console.WriteLine("0 - Exit");
 
             GetUserCommand(new Action<string>(HandleProductMenuCommand));
@@ -91,6 +92,9 @@ namespace DataGen.Extensions.Publish
                 case "4":
                     ChangeProduct("DataGen.Cryptography");
                     break;
+                case "9":
+                    FullProcessForAll();
+                    break;
                 case "0":
                     Environment.Exit(0);
                     break;
@@ -100,6 +104,29 @@ namespace DataGen.Extensions.Publish
             }
 
             DisplayMainMenu();
+        }
+
+        private static void FullProcessForAll()
+        {
+            EnterVersion();
+
+            foreach (var product in Products)
+            {
+                Console.WriteLine();
+
+                ProductName = product.Value;
+                Console.WriteLine(ProductName);
+
+                ChangeVersionInFiles();
+                CommitCurrentVersion();
+                UpdateDependenciesVersion();
+
+                Rebuild();
+
+                Publish();
+            }
+
+            DisplayProductMenu();
         }
 
         private static void ChangeProduct(string productName)
@@ -148,6 +175,7 @@ namespace DataGen.Extensions.Publish
 
         private static void Rebuild()
         {
+            Console.WriteLine("--Rebuilding--");
             foreach (var buildConfiguration in BuildConfigurations)
             {
                 RebuildProjectWithConfiguration(buildConfiguration);
@@ -279,6 +307,7 @@ namespace DataGen.Extensions.Publish
 
         private static void CommitCurrentVersion()
         {
+            Console.WriteLine("--Commiting changed version--");
             Git("add ..\\..\\..\\" + ProductName + "\\Properties\\AssemblyInfo.cs");
             Git("add ..\\..\\..\\NuGet\\" + ProductName + ".nuspec");
             Git("commit -m \"Change version\"");
@@ -318,6 +347,7 @@ namespace DataGen.Extensions.Publish
 
         private static void ChangeVersionInFiles()
         {
+            Console.WriteLine("--Changing version--");
             ChangeAssemblyInfoVerion();
             ChangeNuSpecVersion();
             ShowCurrentVersion();
@@ -341,6 +371,7 @@ namespace DataGen.Extensions.Publish
 
         private static void UpdateDependenciesVersion()
         {
+            Console.WriteLine("--Updating dependencies with changed version--");
             foreach (var product in Products)
             {
                 UpdateDependencyVersion(product.Value);
@@ -370,8 +401,8 @@ namespace DataGen.Extensions.Publish
 
         private static void Publish()
         {
+            Console.WriteLine("--Publishing--");
             PackNuspec();
-            Console.WriteLine();
             PushNupkg();
         }
 
