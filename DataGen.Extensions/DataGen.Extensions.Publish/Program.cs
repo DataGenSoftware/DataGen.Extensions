@@ -40,6 +40,7 @@ namespace DataGen.Extensions.Publish
             yield return "Release 3.5";
             yield return "Release 4.0";
             yield return "Release 4.5";
+            yield return "Release 4.6";
         }
 
         private static string ProductName;

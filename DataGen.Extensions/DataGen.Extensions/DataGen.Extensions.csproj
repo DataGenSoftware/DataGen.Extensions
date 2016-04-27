@@ -10,8 +10,9 @@
     <RootNamespace>DataGen.Extensions</RootNamespace>
     <AssemblyName>DataGen.Extensions</AssemblyName>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release 4.6|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\net46</OutputPath>
+    <DefineConstants>TRACE;NET46</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release 4.5|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,10 +68,11 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.0'" />
-    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.5'" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.0'" />
+    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.5'" />
+    <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.6'" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
