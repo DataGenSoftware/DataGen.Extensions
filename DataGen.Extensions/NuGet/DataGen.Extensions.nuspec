@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>DataGen.Extensions</id>
-    <version>1.5.2</version>
+    <version>1.5.3</version>
     <title>DataGen.Extensions .NET Extensions Library</title>
     <authors>Karol Habczyk</authors>
     <owners>Karol Habczyk</owners>
@@ -18,5 +18,6 @@
     <file src="..\DataGen.Extensions\bin\Release\net35\DataGen.Extensions.dll" target="lib\net35\DataGen.Extensions.dll" />
     <file src="..\DataGen.Extensions\bin\Release\net40\DataGen.Extensions.dll" target="lib\net40\DataGen.Extensions.dll" />
     <file src="..\DataGen.Extensions\bin\Release\net45\DataGen.Extensions.dll" target="lib\net45\DataGen.Extensions.dll" />
+    <file src="..\DataGen.Extensions\bin\Release\net46\DataGen.Extensions.dll" target="lib\net46\DataGen.Extensions.dll" />
   </files>
 </package>
