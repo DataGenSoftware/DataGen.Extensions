@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET types extensions.</description>
     <summary>Useful .NET types extensions library.</summary>
-    <tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool cryptography encryption des aes 3des tripledes word words towords roman romans toromans parseromans numerals numeral</tags>
+    <tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool collection list enumerable next previous</tags>
     <copyright>Copyright © Karol Habczyk</copyright>
   </metadata>
   <files>
