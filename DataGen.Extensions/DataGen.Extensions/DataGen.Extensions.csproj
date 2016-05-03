@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="CharExtensions.cs" />
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Cryptography\ByteExtensions.cs" />
     <Compile Include="Cryptography\KeyFactory.cs" />
     <Compile Include="Cryptography\StringExtensions.cs" />
