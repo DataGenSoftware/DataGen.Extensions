@@ -51,10 +51,10 @@ namespace DataGen.NumberToWords
 
         private static NumberToWordsService CreateNumberToWordsService(string cultureName)
         {
-            var NumberToWordsFactoryCreator = new NumberToWordsFactoryCreator();
-            var NumberToWordsFactory = NumberToWordsFactoryCreator.CreateFactory(cultureName);
-            var numeralsRepository = NumberToWordsFactory.CreateNumeralsRepository();
-            return NumberToWordsFactory.CreateNumberToWordsService(numeralsRepository);
+            var numberToWordsFactoryCreator = NumberToWordsFactoryCreator.Instance;
+            var numberToWordsFactory = numberToWordsFactoryCreator.CreateFactory(cultureName);
+            var numeralsRepository = numberToWordsFactory.CreateNumeralsRepository();
+            return numberToWordsFactory.CreateNumberToWordsService(numeralsRepository);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataGen.NumberToWords.Common;
+﻿using DataGen.Extensions;
+using DataGen.NumberToWords.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,39 @@ namespace DataGen.NumberToWords
     /// <summary>
     /// Simple factory, creates factory for making families of related objects
     /// </summary>
-    /// TODO: Implement singleton
-    public class NumberToWordsFactoryCreator
+    public sealed class NumberToWordsFactoryCreator
     {
+        #region Singleton
+
+        private static volatile NumberToWordsFactoryCreator instance;
+
+        private static readonly object syncObject = new object();
+
+        static NumberToWordsFactoryCreator() { }
+
+        private NumberToWordsFactoryCreator() { }
+        
+        public static NumberToWordsFactoryCreator Instance
+        {
+            get
+            {
+                if (instance.IsNull())
+                {
+                    lock(syncObject)
+                    {
+                        if (instance.IsNull())
+                        {
+                            instance = new NumberToWordsFactoryCreator();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        #endregion
+
         public NumberToWordsFactory CreateFactory(string cultureName)
         {
             if (cultureName.StartsWith("en"))
@@ -25,5 +56,6 @@ namespace DataGen.NumberToWords
 
             throw new ArgumentException("Invalid argument.", "cultureName");
         }
+
     }
 }
