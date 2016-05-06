@@ -69,7 +69,7 @@ namespace DataGen.Extentions.UnitTests
         {
             var collection = this.MakeIntCollection();
 
-            Assert.Throws<InvalidOperationException>(() => collection.Next(x => x == 7));
+            Assert.Throws<InvalidOperationException>(() => collection.Previous(x => x == 13));
         }
 
         [Test]
@@ -96,10 +96,48 @@ namespace DataGen.Extentions.UnitTests
             Assert.Throws<ArgumentNullException>(() => collection.Previous(null));
         }
 
+        [Test]
+        public void IEnumerablePage_PageTwoSizeFive_ReturnsFiveElementsWithOffsetOfFive()
+        {
+            var collection = this.MakeIntCollection();
+
+            var actual = collection.Page(2, 5);
+
+            var expected = new List<int>() { 19, 10, 11, 2, 15 };
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void IEnumerablePage_NullCollection_ThrowsArgumentNullException()
+        {
+            IEnumerable<int> collection = null;
+
+            Assert.Throws<ArgumentNullException>(() => collection.Page(2, 4));
+        }
+
+        [Test]
+        public void IEnumerablePage_PageZero_ThrowsArgumentOutOfRangeException()
+        {
+            IEnumerable<int> collection = this.MakeIntCollection();
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Page(0, 4));
+        }
+
+        [Test]
+        public void IEnumerablePage_PageOutOfRangeSizeFive_ReturnsEmptyCollection()
+        {
+            var collection = this.MakeIntCollection();
+
+            var actual = collection.Page(12, 5);
+
+            var expected = new List<int>();
+            Assert.AreEqual(expected, actual);
+        }
+
 
         private IEnumerable<int> MakeIntCollection()
         {
-            return new List<int>() { 1, 3, 4, 16, 8, 19, 10, 11, 2, 15, 9 };
+            return new List<int>() { 1, 3, 4, 16, 8, 19, 10, 11, 2, 15, 9, 20, 23, 25, 5, 6, 7, 17 };
         }
 
         private IEnumerable<string> MakeStringCollection()

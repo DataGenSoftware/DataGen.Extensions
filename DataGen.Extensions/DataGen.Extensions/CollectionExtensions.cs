@@ -7,12 +7,30 @@ namespace DataGen.Extensions
 {
     public static class CollectionExtensions
     {
+        public static IEnumerable<T> Page<T>(this IEnumerable<T> collection, int pageNumber, int pageSize)
+        {
+            CheckIfCollectionArgumentIsNull(collection);
+            if (pageNumber < 1)
+            {
+                throw new ArgumentOutOfRangeException("pageNumber");
+            }
+
+            var elementsOffset = pageSize * (pageNumber - 1);
+
+            return collection.Skip(elementsOffset).Take(pageSize);
+        }
+
         public static T Previous<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
             CheckIfCollectionArgumentIsNull(collection);
             CheckIfPredicateArgumentIsNull(predicate);
 
-            return collection.TakeWhile(x => !predicate(x)).Last();
+            if (collection.Any(predicate))
+            {
+                return collection.TakeWhile(x => !predicate(x)).Last();
+            }
+
+            return collection.TakeWhile(x => predicate(x)).Last();
         }
 
         public static T Next<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
