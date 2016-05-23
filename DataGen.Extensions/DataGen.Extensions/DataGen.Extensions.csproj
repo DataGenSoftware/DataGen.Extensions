@@ -78,6 +78,7 @@
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="CharExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="Collection\CollectionExtensions.cs" />
     <Compile Include="Cryptography\ByteExtensions.cs" />
     <Compile Include="Cryptography\KeyFactory.cs" />
     <Compile Include="Cryptography\StringExtensions.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Cryptography\SymmetricAlgorithmTypes.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
+    <Compile Include="Collection\Page.cs" />
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="NumberToWords\NumberToWordsExtensions.cs" />
     <Compile Include="RomanNumerals\Common\IRomansNumeralsRepository.cs" />

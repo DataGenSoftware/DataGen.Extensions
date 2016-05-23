@@ -1,15 +1,13 @@
-﻿using DataGen.Extensions.Collection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataGen.Extensions
+namespace DataGen.Extensions.Collection
 {
     public static class CollectionExtensions
     {
-        [Obsolete]
-        public static IEnumerable<T> Page<T>(this IEnumerable<T> collection, int pageNumber, int pageSize)
+        public static Page<T> Page<T>(this IEnumerable<T> collection, int pageNumber, int pageSize)
         {
             CheckIfCollectionArgumentIsNull(collection);
             if (pageNumber < 1)
@@ -19,10 +17,17 @@ namespace DataGen.Extensions
 
             var elementsOffset = pageSize * (pageNumber - 1);
 
-            return collection.Skip(elementsOffset).Take(pageSize);
+            var page = new Page<T>()
+            {
+                
+                elementsCount = collection.Count(),
+                pagesCount = (int)Math.Ceiling((decimal)collection.Count() / (decimal)pageSize)
+            };
+            page.AddRange(collection.Skip(elementsOffset).Take(pageSize));
+
+            return page;
         }
 
-        [Obsolete]
         public static T Previous<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
             CheckIfCollectionArgumentIsNull(collection);
@@ -36,7 +41,6 @@ namespace DataGen.Extensions
             return collection.TakeWhile(x => predicate(x)).Last();
         }
 
-        [Obsolete]
         public static T Next<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
         {
             CheckIfCollectionArgumentIsNull(collection);
