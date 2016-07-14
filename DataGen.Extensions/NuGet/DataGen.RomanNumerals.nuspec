@@ -7,7 +7,7 @@
     <authors>Karol Habczyk</authors>
     <owners>Karol Habczyk</owners>
     <licenseUrl>https://raw.githubusercontent.com/DataGenSoftware/DataGen.Extensions/master/LICENSE</licenseUrl>
-    <projectUrl>http://www.datagen.pl/extensions</projectUrl>
+    <projectUrl>http://www.extensions.datagen.pl/extensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Roman numerals extensions.</description>
     <summary>Roman numerals extensions.</summary>

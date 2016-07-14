@@ -97,5 +97,25 @@ namespace DataGen.Extensions
 		{
 			return value.BeginingOfYear().AddYears(1).AddTicks(-1);
 		}
-	}
+
+        public static int Quarter(this DateTime value)
+        {
+            return (value.Month + 2) / 3;
+        }
+
+        public static DateTime AddQuarters(this DateTime value, int count)
+        {
+            return value.AddMonths(3 * count);
+        }
+
+        public static DateTime BeginingOfQuarter(this DateTime value)
+        {
+            return new DateTime(value.Year, value.Quarter(), 1);
+        }
+
+        public static DateTime EndOfQuarter(this DateTime value)
+        {
+            return value.BeginingOfQuarter().AddQuarters(1).AddTicks(-1);
+        }
+    }
 }
