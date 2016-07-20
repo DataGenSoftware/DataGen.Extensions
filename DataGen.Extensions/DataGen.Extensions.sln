@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RomanNumerals", "RomanNumer
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cryptography", "Cryptography", "{71776491-BCD9-4B6B-913E-4003B59F2DBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen.Extensions.Publish.Common", "DataGen.Extensions.Publish.Common\DataGen.Extensions.Publish.Common.csproj", "{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +159,18 @@ Global
 		{DA8089D8-F6DA-4F35-931F-9FCD8027B6D3}.Release 4.6|Any CPU.Build.0 = Release|Any CPU
 		{DA8089D8-F6DA-4F35-931F-9FCD8027B6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA8089D8-F6DA-4F35-931F-9FCD8027B6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.0|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.0|Any CPU.Build.0 = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.5|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.5|Any CPU.Build.0 = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.6|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release 4.6|Any CPU.Build.0 = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,5 +185,6 @@ Global
 		{90A41D19-873E-4468-9BF5-9ED907361900} = {14BD741F-0DD8-4041-AF49-31774294E389}
 		{8B8868E5-6BE3-4F61-819C-81E50C0CD8DC} = {71776491-BCD9-4B6B-913E-4003B59F2DBA}
 		{DA8089D8-F6DA-4F35-931F-9FCD8027B6D3} = {71776491-BCD9-4B6B-913E-4003B59F2DBA}
+		{4FB185AE-0F67-4AAF-B2F9-5AFCDD0517FB} = {A6FEB766-2CAE-4E09-9988-232C766FFD9D}
 	EndGlobalSection
 EndGlobal
