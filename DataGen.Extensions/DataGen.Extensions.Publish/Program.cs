@@ -13,11 +13,16 @@ namespace DataGen.Extensions.Publish
 {
     class Program
     {
-        private static PublishManager PublishManager { get; set; }
-
         static void Main(string[] args)
         {
-            PublishManager.ProductsManager.DisplayProductMenu();
+            // TODO: Refactor to builder
+            var publishManager = new PublishManager();
+            publishManager.ProductsManager = new ProductsManager(publishManager); 
+            publishManager.VersionManager = new VersionManager(publishManager); 
+            publishManager.BuildManager = new BuildManager(publishManager); 
+            publishManager.NuGetManager = new NuGetManager(publishManager);
+
+            publishManager.ProductsManager.DisplayProductMenu();
         }
     }
 }

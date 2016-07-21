@@ -9,13 +9,19 @@ namespace DataGen.Extensions.Publish.Common
 {
     public class BuildManager
     {
-
         public PublishManager PublishManager { get; set; }
 
-        public ProductsManager ProductsManager { get; set; }
-
-        public BuildManager()
+        public ProductsManager ProductsManager
         {
+            get
+            {
+                return this.PublishManager.ProductsManager;
+            }
+        }
+
+        public BuildManager(PublishManager publishManager)
+        {
+            this.PublishManager = publishManager;
             this.BuildConfigurations = this.GetBuildConfigurations();
         }
 

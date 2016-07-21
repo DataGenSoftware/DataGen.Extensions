@@ -9,15 +9,17 @@ namespace DataGen.Extensions.Publish.Common
 {
     public class PublishManager
     {
+        public ProductsManager ProductsManager { get; set; }
+
         public VersionManager VersionManager { get; set; }
 
         public BuildManager BuildManager { get; set; }
 
         public NuGetManager NuGetManager { get; set; }
 
-        public ProductsManager ProductsManager { get; set; }
-
-        
+        public PublishManager()
+        {
+                    }
 
         public void DisplayMainMenu()
         {

@@ -10,11 +10,35 @@ namespace DataGen.Extensions.Publish.Common
     {
         public PublishManager PublishManager { get; set; }
 
-        public VersionManager VersionManager { get; set; }
-
-        public ProductsManager()
+        public VersionManager VersionManager
         {
+            get
+            {
+                return this.PublishManager.VersionManager;
+            }
+        }
+
+        public BuildManager BuildManager
+        {
+            get
+            {
+                return this.PublishManager.BuildManager;
+            }
+        }
+
+        public NuGetManager NuGetManager
+        {
+            get
+            {
+                return this.PublishManager.NuGetManager;
+            }
+        }
+
+        public ProductsManager(PublishManager publishManager)
+        {
+            this.PublishManager = publishManager;
             this.Products = this.GetProducts();
+            this.ProductName = this.GetDefaultProductName();
         }
 
         // TODO: Get from config
@@ -33,6 +57,12 @@ namespace DataGen.Extensions.Publish.Common
                 { 3, "DataGen.NumberToWords"},
                 { 4, "DataGen.Cryptography"},
             };
+        }
+
+        // TODO: Get from config
+        private string GetDefaultProductName()
+        {
+            return "DataGen.Extensions";
         }
 
         public void ChangeProduct(string productName)
