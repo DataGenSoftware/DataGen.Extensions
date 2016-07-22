@@ -36,7 +36,7 @@ namespace DataGen.Extensions.Publish.Common
         private Version GetAssemblyCurrentVersion()
         {
             string fileContent;
-            var fileName = "..\\..\\..\\" + this.ProductsManager.ProductName + "\\Properties\\AssemblyInfo.cs";
+            var fileName = "..\\..\\..\\" + this.ProductsManager.Product + "\\Properties\\AssemblyInfo.cs";
             string regexPattern = "\\[assembly: AssemblyVersion\\(\\\"\\d+\\.\\d+\\.\\d+.\\*\\\"\\)\\]";
             Match match = GetVersionRegexMatch(fileName, regexPattern, out fileContent);
             if (match.Success)
@@ -82,7 +82,7 @@ namespace DataGen.Extensions.Publish.Common
         private void DisplayChangeVersionMenu()
         {
             Console.WriteLine();
-            Console.WriteLine(string.Format("---{0} Change version menu---", this.ProductsManager.ProductName));
+            Console.WriteLine(string.Format("---{0} Change version menu---", this.ProductsManager.Product));
             Console.WriteLine("1 - Increase build version number");
             Console.WriteLine("2 - Increase minor version number");
             Console.WriteLine("3 - Increase major version number");
@@ -176,7 +176,7 @@ namespace DataGen.Extensions.Publish.Common
 
         private void ChangeAssemblyInfoVerion()
         {
-            string fileName = "..\\..\\..\\" + this.ProductsManager.ProductName + "\\Properties\\AssemblyInfo.cs";
+            string fileName = "..\\..\\..\\" + this.ProductsManager.Product + "\\Properties\\AssemblyInfo.cs";
             string regexPattern = "\\[assembly: AssemblyVersion\\(\\\"\\d+\\.\\d+\\.\\d+.\\*\\\"\\)\\]";
             string versionPlaceholder = "[assembly: AssemblyVersion(\"{0}.*\")]";
             this.ChangeVersionInFile(fileName, regexPattern, versionPlaceholder);
@@ -184,7 +184,7 @@ namespace DataGen.Extensions.Publish.Common
 
         private void ChangeNuSpecVersion()
         {
-            string fileName = "..\\..\\..\\NuGet\\" + this.ProductsManager.ProductName + ".nuspec";
+            string fileName = "..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".nuspec";
             string regexPattern = "<version>\\d+\\.\\d+\\.\\d+</version>";
             string versionPlaceholder = "<version>{0}</version>";
             this.ChangeVersionInFile(fileName, regexPattern, versionPlaceholder);
@@ -202,8 +202,8 @@ namespace DataGen.Extensions.Publish.Common
         private void UpdateDependencyVersion(string dependentProduct)
         {
             string fileName = "..\\..\\..\\NuGet\\" + dependentProduct + ".nuspec";
-            string regexPattern = "<dependency id=\"" + this.ProductsManager.ProductName + "\" version=\"\\d+\\.\\d+\\.\\d+\" />";
-            string placeholder = "<dependency id=\"" + this.ProductsManager.ProductName + "\" version=\"{0}\" />";
+            string regexPattern = "<dependency id=\"" + this.ProductsManager.Product + "\" version=\"\\d+\\.\\d+\\.\\d+\" />";
+            string placeholder = "<dependency id=\"" + this.ProductsManager.Product + "\" version=\"{0}\" />";
             this.ChangeVersionInFile(fileName, regexPattern, placeholder);
         }
 
@@ -223,8 +223,8 @@ namespace DataGen.Extensions.Publish.Common
         private void CommitCurrentVersion()
         {
             Console.WriteLine("--Commiting changed version--");
-            this.PublishManager.Git("add ..\\..\\..\\" + this.ProductsManager.ProductName + "\\Properties\\AssemblyInfo.cs");
-            this.PublishManager.Git("add ..\\..\\..\\NuGet\\" + this.ProductsManager.ProductName + ".nuspec");
+            this.PublishManager.Git("add ..\\..\\..\\" + this.ProductsManager.Product + "\\Properties\\AssemblyInfo.cs");
+            this.PublishManager.Git("add ..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".nuspec");
             this.PublishManager.Git("commit -m \"Change version\"");
         }
     }

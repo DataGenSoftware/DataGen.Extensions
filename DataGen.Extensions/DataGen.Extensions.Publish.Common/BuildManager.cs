@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,13 +28,10 @@ namespace DataGen.Extensions.Publish.Common
 
         public IEnumerable<string> BuildConfigurations { get; set; }
 
-        // TODO: Get from config
         private IEnumerable<string> GetBuildConfigurations()
         {
-            yield return "Release 3.5";
-            yield return "Release 4.0";
-            yield return "Release 4.5";
-            yield return "Release 4.6";
+            var buildConfigurationsAppSetting = this.PublishManager.GetAppSetting("BuildConfigurations");
+            return buildConfigurationsAppSetting.Split(';');
         }
 
         public void Rebuild()
@@ -47,8 +45,8 @@ namespace DataGen.Extensions.Publish.Common
 
         private void RebuildProjectWithConfiguration(string configurationName)
         {
-            string fileName = "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\msbuild.exe";
-            string arguments = "..\\..\\..\\" + this.ProductsManager.ProductName + "\\" + this.ProductsManager.ProductName + ".csproj /nologo /v:m /t:Rebuild /p:WarningLevel=0 /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
+            string fileName = this.PublishManager.GetAppSetting("MsBuildPath");
+            string arguments = "..\\..\\..\\" + this.ProductsManager.Product + "\\" + this.ProductsManager.Product + ".csproj /nologo /v:m /t:Rebuild /p:WarningLevel=0 /property:Configuration=\"" + configurationName + "\";Platform=\"AnyCPU\"";
             this.PublishManager.Process(fileName, arguments);
         }
     }

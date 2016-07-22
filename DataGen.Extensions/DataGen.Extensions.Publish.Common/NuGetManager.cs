@@ -26,6 +26,14 @@ namespace DataGen.Extensions.Publish.Common
             }
         }
 
+        private string NuGetPath
+        {
+            get
+            {
+                return this.PublishManager.GetAppSetting("NuGetPath");
+            }
+        }
+
         public NuGetManager(PublishManager publishManager)
         {
             this.PublishManager = publishManager;
@@ -40,15 +48,15 @@ namespace DataGen.Extensions.Publish.Common
 
         private void PackNuspec()
         {
-            string fileName = "..\\..\\..\\Tools\\nuget.exe";
-            string arguments = "pack ..\\..\\..\\NuGet\\" + this.ProductsManager.ProductName + ".nuspec -OutputDirectory \"..\\..\\..\\NuGet\"";
+            string fileName = this.NuGetPath;
+            string arguments = "pack ..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".nuspec -OutputDirectory \"..\\..\\..\\NuGet\"";
             this.PublishManager.Process(fileName, arguments);
         }
 
         private void PushNupkg()
         {
-            string fileName = "..\\..\\..\\Tools\\nuget.exe";
-            string arguments = string.Format("push ..\\..\\..\\NuGet\\" + this.ProductsManager.ProductName + ".{0}.nupkg", this.VersionManager.GetCurrentVersionString());
+            string fileName = this.NuGetPath;
+            string arguments = string.Format("push ..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".{0}.nupkg", this.VersionManager.GetCurrentVersionString());
             this.PublishManager.Process(fileName, arguments);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,36 +39,38 @@ namespace DataGen.Extensions.Publish.Common
         {
             this.PublishManager = publishManager;
             this.Products = this.GetProducts();
-            this.ProductName = this.GetDefaultProductName();
+            this.Product = this.GetDefaultProduct();
         }
 
-        // TODO: Get from config
-        public IDictionary<int, string> Products { get; set; }
+        public IDictionary<string, string> Products { get; set; }
 
-        // TODO: Get from config
-        public string ProductName { get; set; }
+        public string Product { get; set; }
 
-        // TODO: Get from config
-        private IDictionary<int, string> GetProducts()
+        private IDictionary<string, string> GetProducts()
         {
-            return new Dictionary<int, string>()
+            Dictionary<string, string> products = new Dictionary<string, string>();
+
+            var productsAppSetting = ConfigurationManager.AppSettings["Products"];
+            if (!string.IsNullOrWhiteSpace(productsAppSetting))
             {
-                { 1, "DataGen.Extensions"},
-                { 2, "DataGen.RomanNumerals"},
-                { 3, "DataGen.NumberToWords"},
-                { 4, "DataGen.Cryptography"},
-            };
+                products = productsAppSetting.Split(';').ToDictionary(x => x.Split('|')[0], x => x.Split('|')[1]);
+            }
+            else
+            {
+                products.Add("0", this.GetDefaultProduct());
+            }
+
+            return products;
         }
 
-        // TODO: Get from config
-        private string GetDefaultProductName()
+        private string GetDefaultProduct()
         {
-            return "DataGen.Extensions";
+            return this.PublishManager.GetAppSetting("DefaultProduct");
         }
 
         public void ChangeProduct(string productName)
         {
-            this.ProductName = productName;
+            this.Product = productName;
             this.VersionManager.UpdateAssemblyCurrentVersion();
 
             this.PublishManager.DisplayMainMenu();
@@ -89,29 +92,21 @@ namespace DataGen.Extensions.Publish.Common
 
         private void HandleProductMenuCommand(string command)
         {
-            switch (command)
+            if (this.Products.ContainsKey(command))
             {
-                case "1":
-                    this.ChangeProduct("DataGen.Extensions");
-                    break;
-                case "2":
-                    this.ChangeProduct("DataGen.RomanNumerals");
-                    break;
-                case "3":
-                    this.ChangeProduct("DataGen.NumberToWords");
-                    break;
-                case "4":
-                    this.ChangeProduct("DataGen.Cryptography");
-                    break;
-                case "9":
-                    this.PublishManager.FullProcessForAll();
-                    break;
-                case "0":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    this.PublishManager.WrongCommand();
-                    break;
+                this.ChangeProduct(this.Products[command]);
+            }
+            else if(command == "9")
+            {
+                this.PublishManager.FullProcessForAll();
+            }
+            else if (command == "0")
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                this.PublishManager.WrongCommand();
             }
 
             this.PublishManager.DisplayMainMenu();

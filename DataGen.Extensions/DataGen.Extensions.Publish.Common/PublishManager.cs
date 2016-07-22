@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,18 +18,33 @@ namespace DataGen.Extensions.Publish.Common
 
         public NuGetManager NuGetManager { get; set; }
 
-        public PublishManager()
+        public void DisplayMenu()
         {
-                    }
+            if (this.ProductsManager.Products.Count > 1)
+            {
+                this.DisplayMainMenu();
+            }
+            else
+            {
+                this.ProductsManager.DisplayProductMenu();
+            }
+        }
 
         public void DisplayMainMenu()
         {
             Console.WriteLine();
-            Console.WriteLine(string.Format("---{0} Main menu---", this.ProductsManager.ProductName));
+            Console.WriteLine(string.Format("---{0} Main menu---", this.ProductsManager.Product));
             Console.WriteLine("1 - Change verion");
             Console.WriteLine("2 - Rebuild");
             Console.WriteLine("3 - Publish to NuGet");
-            Console.WriteLine("0 - Product menu");
+            if (this.ProductsManager.Products.Count > 1)
+            {
+                Console.WriteLine("0 - Product menu");
+            }
+            else
+            {
+                Console.WriteLine("0 - Exit");
+            }
 
             this.GetUserCommand(new Action<string>(HandleMainMenuCommand));
         }
@@ -47,7 +63,14 @@ namespace DataGen.Extensions.Publish.Common
                     this.NuGetManager.Publish();
                     break;
                 case "0":
-                    this.ProductsManager.DisplayProductMenu();
+                    if (this.ProductsManager.Products.Count > 1)
+                    {
+                        this.ProductsManager.DisplayProductMenu();
+                    }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
                     break;
                 default:
                     WrongCommand();
@@ -65,8 +88,8 @@ namespace DataGen.Extensions.Publish.Common
             {
                 Console.WriteLine();
 
-                this.ProductsManager.ProductName = product.Value;
-                Console.WriteLine(this.ProductsManager.ProductName);
+                this.ProductsManager.Product = product.Value;
+                Console.WriteLine(this.ProductsManager.Product);
 
                 this.VersionManager.FullProcessChangeVersion();
 
@@ -115,6 +138,16 @@ namespace DataGen.Extensions.Publish.Common
         public void WrongCommand()
         {
             Console.WriteLine("Wrong command! Try again.");
+        }
+
+        public string GetAppSetting(string key)
+        {
+            var appSetting = ConfigurationManager.AppSettings[key];
+            if (string.IsNullOrWhiteSpace(appSetting))
+            {
+                throw new Exception(string.Format("{0} appsetting is missing.", key));
+            }
+            return appSetting;
         }
     }
 }
