@@ -22,7 +22,7 @@ namespace DataGen.Extensions.Publish
             publishManager.BuildManager = new BuildManager(publishManager); 
             publishManager.NuGetManager = new NuGetManager(publishManager);
 
-            publishManager.ProductsManager.DisplayProductMenu();
+            publishManager.DisplayMenu();
         }
     }
 }

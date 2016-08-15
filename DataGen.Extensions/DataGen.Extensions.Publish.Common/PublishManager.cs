@@ -22,11 +22,11 @@ namespace DataGen.Extensions.Publish.Common
         {
             if (this.ProductsManager.Products.Count > 1)
             {
-                this.DisplayMainMenu();
+                this.ProductsManager.DisplayProductMenu();
             }
             else
             {
-                this.ProductsManager.DisplayProductMenu();
+                this.DisplayMainMenu();
             }
         }
 
