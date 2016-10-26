@@ -20,8 +20,8 @@ namespace DataGen.Extensions.Collection
             var page = new Page<T>()
             {
                 
-                elementsCount = collection.Count(),
-                pagesCount = (int)Math.Ceiling((decimal)collection.Count() / (decimal)pageSize)
+                ElementsCount = collection.Count(),
+                PagesCount = (int)Math.Ceiling((decimal)collection.Count() / (decimal)pageSize)
             };
             page.AddRange(collection.Skip(elementsOffset).Take(pageSize));
 

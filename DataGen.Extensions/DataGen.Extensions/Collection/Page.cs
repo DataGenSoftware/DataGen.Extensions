@@ -8,8 +8,8 @@ namespace DataGen.Extensions.Collection
     public class Page<T>: List<T>
     {
 
-        public int pagesCount { get; set; }
+        public int PagesCount { get; set; }
 
-        public int elementsCount { get; set; }
+        public int ElementsCount { get; set; }
     }
 }
