@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataGen.Extensions.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,7 +81,7 @@ namespace DataGen.Extensions
 
 		public static bool IsToday(this DateTime value)
 		{
-			return value.Date == DateTime.Today;
+			return value.Date == DateTimeProvider.Current.Today;
 		}
 
 		public static DateTime AddWeeks(this DateTime value, int count)

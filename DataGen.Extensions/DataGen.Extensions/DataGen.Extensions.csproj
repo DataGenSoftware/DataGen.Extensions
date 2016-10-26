@@ -79,6 +79,7 @@
     <Compile Include="CharExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collection\CollectionExtensions.cs" />
+    <Compile Include="Contracts\IDateTimeProvider.cs" />
     <Compile Include="Cryptography\ByteExtensions.cs" />
     <Compile Include="Cryptography\KeyFactory.cs" />
     <Compile Include="Cryptography\StringExtensions.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="Collection\Page.cs" />
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="NumberToWords\NumberToWordsExtensions.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
+    <Compile Include="Providers\DefaultDateTimeProvider.cs" />
     <Compile Include="RomanNumerals\Common\IRomansNumeralsRepository.cs" />
     <Compile Include="RomanNumerals\Common\INumeralsRomansRepository.cs" />
     <Compile Include="RomanNumerals\Common\Numeral.cs" />
