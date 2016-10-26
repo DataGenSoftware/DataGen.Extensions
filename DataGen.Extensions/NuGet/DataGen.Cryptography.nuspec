@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>DataGen.Cryptography</id>
-    <version>1.7.8</version>
+    <version>1.8.0</version>
     <title>DataGen.Cryptography Cryptography Extensions Library</title>
     <authors>Karol Habczyk</authors>
     <owners>Karol Habczyk</owners>
@@ -15,7 +15,7 @@
     <copyright>Copyright © Karol Habczyk</copyright>
     <dependencies>
       <group>
-        <dependency id="DataGen.Extensions" version="1.7.8" />
+        <dependency id="DataGen.Extensions" version="1.8.0" />
       </group>
     </dependencies>
   </metadata>
