@@ -16,12 +16,14 @@ namespace DataGen.NumberToWords.Common
 
         public virtual string InWords(int value)
         {
-            if (value < 0 || value > 999999999)
+            if (value < -999999999 || value > 999999999)
             {
                 throw new ArgumentOutOfRangeException("value");
             }
 
             var result = string.Empty;
+
+            result = ProcessNegativeValue(ref value, result);
 
             result = ProcessPartOfValue(value, result, NumeralOrderOfMagnitude.Milion);
 
@@ -30,6 +32,17 @@ namespace DataGen.NumberToWords.Common
             result = ProcessPartOfValue(value, result, NumeralOrderOfMagnitude.Unit);
 
             return result.Trim();
+        }
+
+        protected string ProcessNegativeValue(ref int value, string result)
+        {
+            if (value < 0)
+            {
+                result += this.NumeralsRepository.Minus;
+                value = Math.Abs(value);
+            }
+
+            return result;
         }
 
         protected string ProcessPartOfValue(int value, string result, NumeralOrderOfMagnitude numeralOrderOfMagnitude)

@@ -10,6 +10,7 @@ namespace DataGen.NumberToWords.UnitTests
     [TestFixture]
     public class NumberToWordsExtensionsTests
     {
+        [TestCase(0, "", "pl-PL")]
         [TestCase(1, "jeden", "pl-PL")]
         [TestCase(100, "sto", "pl-PL")]
         [TestCase(101, "sto jeden", "pl-PL")]
@@ -18,6 +19,7 @@ namespace DataGen.NumberToWords.UnitTests
         [TestCase(100100, "sto tysięcy sto", "pl-PL")]
         [TestCase(1234567, "jeden milion dwieście trzydzieści cztery tysiące pięćset sześćdziesiąt siedem", "pl-PL")]
         [TestCase(123456789, "sto dwadzieścia trzy miliony czterysta pięćdziesiąt sześć tysięcy siedemset osiemdziesiąt dziewięć", "pl-PL")]
+        [TestCase(-111, "minus sto jedenaście", "pl-PL")]
 
         [TestCase(0, "", "en-US")]
         [TestCase(1, "one", "en-US")]
@@ -28,6 +30,7 @@ namespace DataGen.NumberToWords.UnitTests
         [TestCase(100100, "one hundred thousand one hundred", "en-US")]
         [TestCase(1234567, "one milion two hundred thirty four thousand five hundred sixty seven", "en-US")]
         [TestCase(123456789, "one hundred twenty three milion four hundred fifty six thousand seven hundred eighty nine", "en-US")]
+        [TestCase(-34, "minus thirty four", "en-US")]
 
         public void InWords_Number_ReturnsWords(int value, string expected, string cultureName)
         {
@@ -36,9 +39,9 @@ namespace DataGen.NumberToWords.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(-1)]
+        [TestCase(-3000000000)]
         [TestCase(3000000000)]
-        public void ToRomans_NumberOutOfRange_ThrowsArgumentOutOfRangeException(long value)
+        public void ToWords_NumberOutOfRange_ThrowsArgumentOutOfRangeException(long value)
         {
             var ex = Assert.Throws<ArgumentOutOfRangeException>(() => value.ToWords("en-US"));
 

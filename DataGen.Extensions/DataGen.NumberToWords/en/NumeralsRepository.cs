@@ -14,6 +14,14 @@ namespace DataGen.NumberToWords.En
             this.NumeralExtensions = this.GetNumeralExtensions();
         }
 
+        public override string Minus
+        {
+            get
+            {
+                return "minus";
+            }
+        }
+
         public override string GetNumeral(int value)
         {
             return this.Numerals[value];
