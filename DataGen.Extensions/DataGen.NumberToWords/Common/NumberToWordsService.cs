@@ -56,11 +56,11 @@ namespace DataGen.NumberToWords.Common
                 while (partOfValue > 0)
                 {
                     int operatorValue = this.NumeralsRepository.Numerals.OrderByDescending(x => x.Key).First(x => x.Key <= partOfValue).Key;
-                    result += " " + this.NumeralsRepository.GetNumeral(operatorValue);
+                    result += NumeralsRepository.Space + this.NumeralsRepository.GetNumeral(operatorValue);
                     partOfValue -= operatorValue;
                 }
 
-                result += " " + extension;
+                result += NumeralsRepository.Space + extension;
             }
 
             return result;

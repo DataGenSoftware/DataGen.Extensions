@@ -7,6 +7,8 @@ namespace DataGen.NumberToWords.Common
 {
     public abstract class NumeralsRepository
     {
+        public const string Space = " ";
+
         public abstract string Minus { get; }
 
         public Dictionary<int, string> Numerals { get; protected set; }

@@ -110,7 +110,7 @@ namespace DataGen.NumberToWords.En
             foreach (var numeral in CreateUnitNumerals().Where(x => x.Value >= 1))
             {
                 var value = numeral.Value * 100;
-                yield return new Numeral { Value = value, Word = numeral.Word +  " " + postfix };
+                yield return new Numeral { Value = value, Word = numeral.Word + NumeralsRepository.Space + postfix };
             }
 
         }
