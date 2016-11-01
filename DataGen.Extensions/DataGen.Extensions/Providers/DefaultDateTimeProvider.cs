@@ -1,11 +1,12 @@
 ﻿using DataGen.Extensions.Contracts;
 using System;
+using System.Collections.Generic;
 
 namespace DataGen.Extensions.Providers
 {
     public class DefaultDateTimeProvider : IDateTimeProvider
     {
-        public DateTime Now
+        public virtual DateTime Now
         {
             get
             {
@@ -14,13 +15,30 @@ namespace DataGen.Extensions.Providers
 
         }
 
-        public DateTime Today
+        public virtual DateTime Today
         {
             get
             {
                 return DateTime.Today;
             }
 
+        }
+
+        public virtual DayOfWeek FirstDayOfWeek
+        {
+            get
+            {
+                return DayOfWeek.Monday;
+            }
+        }
+
+        public virtual IEnumerable<DayOfWeek> WeekendDays
+        {
+            get
+            {
+                yield return DayOfWeek.Saturday;
+                yield return DayOfWeek.Sunday;
+            }
         }
 
         #region Singleton

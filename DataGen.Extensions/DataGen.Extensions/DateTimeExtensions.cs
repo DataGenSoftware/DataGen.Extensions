@@ -10,12 +10,12 @@ namespace DataGen.Extensions
 	{
 		private static DayOfWeek FirstDayOfWeek()
 		{
-			return DayOfWeek.Monday;
+			return DateTimeProvider.Current.FirstDayOfWeek;
 		}
 
 		private static IEnumerable<DayOfWeek> WeekendDays()
 		{
-			return new List<DayOfWeek>() { DayOfWeek.Saturday, DayOfWeek.Sunday };
+			return DateTimeProvider.Current.WeekendDays;
 		}
 
 		public static bool IsWeekendDay(this DateTime value)

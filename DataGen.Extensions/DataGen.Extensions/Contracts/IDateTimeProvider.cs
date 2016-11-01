@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DataGen.Extensions.Contracts
 {
@@ -7,5 +8,9 @@ namespace DataGen.Extensions.Contracts
         DateTime Now { get; }
 
         DateTime Today { get; }
+
+        DayOfWeek FirstDayOfWeek { get; }
+
+        IEnumerable<DayOfWeek> WeekendDays { get; }
     }
 }
