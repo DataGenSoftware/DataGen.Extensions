@@ -25,7 +25,7 @@ namespace DataGen.Extensions
 
 		public static bool IsWeekDay(this DateTime value)
 		{
-			return DateTimeExtensions.IsWeekendDay(value) == false;
+			return !DateTimeExtensions.IsWeekendDay(value);
 		}
 
 		public static DateTime BeginingOfDay(this DateTime value)

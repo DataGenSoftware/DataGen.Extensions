@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataGen.Extensions;
+using DataGen.Extensions.Providers;
+using FakeItEasy;
+using DataGen.Extensions.Contracts;
 
 namespace DataGen.Extentions.UnitTests
 {
@@ -160,6 +163,34 @@ namespace DataGen.Extentions.UnitTests
 
             DateTime expected = DateTime.Parse(newDateTimeString);
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void DateTimeIsToday_Now_ReturnsTrue()
+        {
+            IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
+            A.CallTo(() => dateTimeProvider.Today).Returns(new DateTime(2016, 10, 30));
+            DateTimeProvider.Current = dateTimeProvider;
+
+            DateTime dateTime = new DateTime(2016, 10, 30, 12, 34, 56, 789);
+
+            bool actual = dateTime.IsToday();
+
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void DateTimeIsToday_Yesterday_ReturnsFalse()
+        {
+            IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
+            A.CallTo(() => dateTimeProvider.Today).Returns(new DateTime(2016, 10, 30));
+            DateTimeProvider.Current = dateTimeProvider;
+
+            DateTime dateTime = new DateTime(2016, 10, 29, 12, 34, 56, 789);
+
+            bool actual = dateTime.IsToday();
+
+            Assert.IsFalse(actual);
         }
     }
 }
