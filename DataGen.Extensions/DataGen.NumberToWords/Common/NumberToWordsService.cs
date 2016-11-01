@@ -21,7 +21,7 @@ namespace DataGen.NumberToWords.Common
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            var result = string.Empty;
+            StringBuilder result = new StringBuilder();
 
             result = ProcessNegativeValue(ref value, result);
 
@@ -31,21 +31,21 @@ namespace DataGen.NumberToWords.Common
 
             result = ProcessPartOfValue(value, result, NumeralOrderOfMagnitude.Unit);
 
-            return result.Trim();
+            return result.ToString().Trim();
         }
 
-        protected string ProcessNegativeValue(ref int value, string result)
+        protected StringBuilder ProcessNegativeValue(ref int value, StringBuilder result)
         {
             if (value < 0)
             {
-                result += this.NumeralsRepository.Minus;
+                result.Append(this.NumeralsRepository.Minus);
                 value = Math.Abs(value);
             }
 
             return result;
         }
 
-        protected string ProcessPartOfValue(int value, string result, NumeralOrderOfMagnitude numeralOrderOfMagnitude)
+        protected StringBuilder ProcessPartOfValue(int value, StringBuilder result, NumeralOrderOfMagnitude numeralOrderOfMagnitude)
         {
             int partOfValue = this.GetPartOfValue(value, numeralOrderOfMagnitude);
 
@@ -56,11 +56,13 @@ namespace DataGen.NumberToWords.Common
                 while (partOfValue > 0)
                 {
                     int operatorValue = this.NumeralsRepository.Numerals.OrderByDescending(x => x.Key).First(x => x.Key <= partOfValue).Key;
-                    result += NumeralsRepository.Space + this.NumeralsRepository.GetNumeral(operatorValue);
+                    result.Append(NumeralsRepository.Space);
+                    result.Append(this.NumeralsRepository.GetNumeral(operatorValue));
                     partOfValue -= operatorValue;
                 }
 
-                result += NumeralsRepository.Space + extension;
+                result.Append(NumeralsRepository.Space);
+                result.Append(extension);
             }
 
             return result;
