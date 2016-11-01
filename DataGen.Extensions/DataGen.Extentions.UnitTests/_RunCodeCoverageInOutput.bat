@@ -1,0 +1,3 @@
+"..\..\..\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe" -target:"..\..\..\packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe" -targetargs:" DataGen.Extentions.UnitTests.dll" -filter:"+[DataGen.Extensions]DataGen.Extensions*" -excludebyattribute:"System.CodeDom.Compiler.GeneratedCodeAttribute" -register:user -output:"_CodeCoverageResult.xml"
+
+"..\..\..\packages\ReportGenerator.2.5.0-beta4\tools\ReportGenerator.exe" "-reports:_CodeCoverageResult.xml" "-targetdir:_CodeCoverageReport"
