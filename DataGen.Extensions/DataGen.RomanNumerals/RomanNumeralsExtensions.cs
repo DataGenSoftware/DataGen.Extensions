@@ -36,16 +36,16 @@ namespace DataGen.RomanNumerals
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            string result = string.Empty;
+            StringBuilder result = new StringBuilder();
 
             while (value > 0)
             {
                 int operatorValue = NumeralsRomansRepository.Dictionary.OrderByDescending(x => x.Key).First(x => value >= x.Key).Key;
-                result += NumeralsRomansRepository.Get(operatorValue);
+                result.Append(NumeralsRomansRepository.Get(operatorValue));
                 value -= operatorValue;
             }
 
-            return result;
+            return result.ToString();
         }
 
         public static int ParseRomans(this string value)
