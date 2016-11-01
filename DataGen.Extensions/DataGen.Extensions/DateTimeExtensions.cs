@@ -84,7 +84,17 @@ namespace DataGen.Extensions
 			return value.Date == DateTimeProvider.Current.Today;
 		}
 
-		public static DateTime AddWeeks(this DateTime value, int count)
+        public static bool IsFuture(this DateTime value)
+        {
+            return value.Date > DateTimeProvider.Current.Now;
+        }
+
+        public static bool IsPast(this DateTime value)
+        {
+            return value.Date < DateTimeProvider.Current.Now;
+        }
+
+        public static DateTime AddWeeks(this DateTime value, int count)
 		{
 			return value.AddDays(7 * count);
 		}
@@ -111,7 +121,7 @@ namespace DataGen.Extensions
 
         public static DateTime BeginingOfQuarter(this DateTime value)
         {
-            return new DateTime(value.Year, value.Quarter(), 1);
+            return new DateTime(value.Year, 1, 1).AddQuarters(value.Quarter() - 1);
         }
 
         public static DateTime EndOfQuarter(this DateTime value)
