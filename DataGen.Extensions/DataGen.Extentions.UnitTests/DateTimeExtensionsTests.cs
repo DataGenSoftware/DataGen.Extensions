@@ -142,7 +142,7 @@ namespace DataGen.Extentions.UnitTests
 
         [TestCase(2016, 10, 30, 12, 34, 56, 0, 4)]
         [TestCase(2016, 1, 30, 12, 34, 56, 0, 1)]
-        public void DateTimeQuarter_DateTime_ReturnsNumberOfQuarter(int year, int month, int day, int hour, int minute, int second, int milisecond, int quarter)
+        public void DateTimeQuarter(int year, int month, int day, int hour, int minute, int second, int milisecond, int quarter)
         {
             DateTime dateTime = new DateTime(year, month, day, hour, minute, second, milisecond);
 
@@ -155,7 +155,7 @@ namespace DataGen.Extentions.UnitTests
         [TestCase("2016-10-30 12:34:56", 1, "2017-01-30 12:34:56")]
         [TestCase("2016-10-30 12:34:56", -1, "2016-07-30 12:34:56")]
         [TestCase("2016-03-31 12:34:56", 1, "2016-06-30 12:34:56")]
-        public void DateTimeAddQuarters_DateTimeQuarters_ReturnsDateTime(string dateTimeString, int quarters, string newDateTimeString)
+        public void DateTimeAddQuarters(string dateTimeString, int quarters, string newDateTimeString)
         {
             DateTime dateTime = DateTime.Parse(dateTimeString);
 
@@ -165,32 +165,54 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void DateTimeIsToday_Now_ReturnsTrue()
+        [TestCase("2016-10-30", "2016-10-30", true)]
+        [TestCase("2016-10-30", "2016-10-29", false)]
+        public void DateTimeIsToday(string dateTimeTodayString, string dateTimeString, bool expected)
         {
-            IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
-            A.CallTo(() => dateTimeProvider.Today).Returns(new DateTime(2016, 10, 30));
-            DateTimeProvider.Current = dateTimeProvider;
+            DateTime todayDateTime = DateTime.Parse(dateTimeTodayString);
+            DateTime dateTime = DateTime.Parse(dateTimeString);
 
-            DateTime dateTime = new DateTime(2016, 10, 30, 12, 34, 56, 789);
+            IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
+            A.CallTo(() => dateTimeProvider.Today).Returns(todayDateTime);
+            DateTimeProvider.Current = dateTimeProvider;
 
             bool actual = dateTime.IsToday();
 
-            Assert.IsTrue(actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void DateTimeIsToday_Yesterday_ReturnsFalse()
+        [TestCase("2016-10-30 12:34:56", "2016-10-31", false)]
+        [TestCase("2016-10-30 12:34:56", "2016-10-30 12:34:56", false)]
+        [TestCase("2016-10-30 12:34:56", "2016-10-29", true)]
+        public void DateTimeIsPast(string dateTimeNowString, string dateTimeString, bool expected)
         {
+            DateTime nowDateTime = DateTime.Parse(dateTimeNowString);
+            DateTime dateTime = DateTime.Parse(dateTimeString);
+
             IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
-            A.CallTo(() => dateTimeProvider.Today).Returns(new DateTime(2016, 10, 30));
+            A.CallTo(() => dateTimeProvider.Now).Returns(nowDateTime);
             DateTimeProvider.Current = dateTimeProvider;
 
-            DateTime dateTime = new DateTime(2016, 10, 29, 12, 34, 56, 789);
+            bool actual = dateTime.IsPast();
 
-            bool actual = dateTime.IsToday();
+            Assert.AreEqual(expected, actual);
+        }
 
-            Assert.IsFalse(actual);
+        [TestCase("2016-10-30 12:34:56", "2016-10-31", true)]
+        [TestCase("2016-10-30 12:34:56", "2016-10-30 12:34:56", false)]
+        [TestCase("2016-10-30 12:34:56", "2016-10-29", false)]
+        public void DateTimeIsFuture(string dateTimeNowString, string dateTimeString, bool expected)
+        {
+            DateTime nowDateTime = DateTime.Parse(dateTimeNowString);
+            DateTime dateTime = DateTime.Parse(dateTimeString);
+
+            IDateTimeProvider dateTimeProvider = A.Fake<IDateTimeProvider>();
+            A.CallTo(() => dateTimeProvider.Now).Returns(nowDateTime);
+            DateTimeProvider.Current = dateTimeProvider;
+
+            bool actual = dateTime.IsFuture();
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -86,12 +86,12 @@ namespace DataGen.Extensions
 
         public static bool IsFuture(this DateTime value)
         {
-            return value.Date > DateTimeProvider.Current.Now;
+            return value > DateTimeProvider.Current.Now;
         }
 
         public static bool IsPast(this DateTime value)
         {
-            return value.Date < DateTimeProvider.Current.Now;
+            return value < DateTimeProvider.Current.Now;
         }
 
         public static DateTime AddWeeks(this DateTime value, int count)
