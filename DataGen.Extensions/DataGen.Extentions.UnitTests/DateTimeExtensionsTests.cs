@@ -214,5 +214,24 @@ namespace DataGen.Extentions.UnitTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void DateTimeDaysToDate_TwoDates_ReturnsCollectionOfDates()
+        {
+            DateTime dateTime = new DateTime(2016, 10, 10);
+            DateTime toDateTime = new DateTime(2016, 10, 30);
+
+            IEnumerable<DateTime> daysToDate = dateTime.DaysToDate(toDateTime);
+
+            Assert.IsNotNull(daysToDate);
+            if (daysToDate.Count() == 21)
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
     }
 }
