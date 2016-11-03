@@ -11,6 +11,40 @@ namespace DataGen.Extentions.UnitTests
     public class CollectionExtensionsTests
     {
         [Test]
+        public void IEnumerableEmptyIfNull_Null_ReturnsEmptyIEnumerable()
+        {
+            IEnumerable<int> collection = null;
+
+            var actual = collection.EmptyIfNull();
+
+            if (actual != null && actual.Count() == 0)
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
+
+        [Test]
+        public void IEnumerableEmptyIfNull_Collection_ReturnsCollection()
+        {
+            var collection = this.MakeIntCollection();
+
+            var actual = collection.EmptyIfNull();
+
+            if (actual != null && actual.Count() > 0)
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
+
+        [Test]
         public void IEnumerableNext_Element_ReturnsNextElementFromEnumerator()
         {
             var collection = this.MakeIntCollection();

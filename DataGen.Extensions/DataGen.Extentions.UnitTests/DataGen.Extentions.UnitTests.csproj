@@ -79,6 +79,7 @@
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="EnumExtensionsTests.cs" />
     <Compile Include="NumberExtensionsTests.cs" />
+    <Compile Include="GenericExtensionsTests.cs" />
     <Compile Include="ObjectExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsTests.cs" />

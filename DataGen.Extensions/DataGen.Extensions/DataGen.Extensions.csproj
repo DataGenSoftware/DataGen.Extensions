@@ -88,6 +88,7 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="Collection\Page.cs" />
+    <Compile Include="GenericExtensions.cs" />
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="NumberToWords\NumberToWordsExtensions.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
@@ -111,7 +112,6 @@
     <Compile Include="NumberToWords\pl\NumberToWordsFactory.cs" />
     <Compile Include="NumberToWords\pl\NumberToWordsService.cs" />
     <Compile Include="NumberToWords\pl\NumeralsRepository.cs" />
-    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>

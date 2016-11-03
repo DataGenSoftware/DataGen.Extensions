@@ -7,6 +7,12 @@ namespace DataGen.Extensions.Collection
 {
     public static class CollectionExtensions
     {
+
+        public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> collection)
+        {
+            return collection ?? Enumerable.Empty<T>();
+        }
+
         public static Page<T> Page<T>(this IEnumerable<T> collection, int pageNumber, int pageSize)
         {
             CheckIfCollectionArgumentIsNull(collection);
