@@ -218,20 +218,29 @@ namespace DataGen.Extentions.UnitTests
         [Test]
         public void DateTimeDaysToDate_TwoDates_ReturnsCollectionOfDates()
         {
-            DateTime dateTime = new DateTime(2016, 10, 10);
+            DateTime dateTime = new DateTime(2016, 10, 10, 12, 34, 56);
             DateTime toDateTime = new DateTime(2016, 10, 30);
 
             IEnumerable<DateTime> daysToDate = dateTime.DaysToDate(toDateTime);
 
             Assert.IsNotNull(daysToDate);
-            if (daysToDate.Count() == 21)
-            {
-                Assert.Pass();
-            }
-            else
-            {
-                Assert.Fail();
-            }
+            Assert.AreEqual(20, daysToDate.Count());
+            Assert.AreEqual(new DateTime(2016, 10, 11), daysToDate.First());
+            Assert.AreEqual(new DateTime(2016, 10, 30), daysToDate.Last());
+        }
+
+        [Test]
+        public void DateTimeHoursToDate_TwoDates_ReturnsCollectionOfDates()
+        {
+            DateTime dateTime = new DateTime(2016, 10, 29, 12, 34, 56);
+            DateTime toDateTime = new DateTime(2016, 10, 30, 1, 2, 3);
+
+            IEnumerable<DateTime> hoursToDate = dateTime.HoursToDate(toDateTime);
+
+            Assert.IsNotNull(hoursToDate);
+            Assert.AreEqual(13, hoursToDate.Count());
+            Assert.AreEqual(new DateTime(2016, 10, 29, 13, 0, 0), hoursToDate.First());
+            Assert.AreEqual(new DateTime(2016, 10, 30, 1, 0, 0), hoursToDate.Last());
         }
     }
 }

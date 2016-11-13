@@ -131,11 +131,30 @@ namespace DataGen.Extensions
 
 		public static IEnumerable<DateTime> DaysToDate(this DateTime value, DateTime toDate)
 		{
-			while(value <= toDate)
+            value = value.Ceiling(new TimeSpan(1, 0, 0, 0));
+
+            while (value <= toDate)
 			{
 				yield return value;
-				value.AddDays(1);
-			}
+                value = value.AddDays(1);
+            }
 		}
-	}
+
+        public static IEnumerable<DateTime> HoursToDate(this DateTime value, DateTime toDate)
+        {
+            value = value.Ceiling(new TimeSpan(1, 0, 0));
+            
+            while (value <= toDate)
+            {
+                yield return value;
+                value = value.AddHours(1);
+            }
+        }
+
+        private static DateTime Ceiling(this DateTime value, TimeSpan interval)
+        {
+            var rest = value.Ticks % interval.Ticks;
+            return rest >= 0 ? value.AddTicks(interval.Ticks - rest) :value;
+        }
+    }
 }
