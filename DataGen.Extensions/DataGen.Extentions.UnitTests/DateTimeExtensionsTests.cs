@@ -239,8 +239,8 @@ namespace DataGen.Extentions.UnitTests
 
             Assert.IsNotNull(hoursToDate);
             Assert.AreEqual(13, hoursToDate.Count());
-            Assert.AreEqual(new DateTime(2016, 10, 29, 13, 0, 0), hoursToDate.First());
-            Assert.AreEqual(new DateTime(2016, 10, 30, 1, 0, 0), hoursToDate.Last());
+            Assert.AreEqual(new DateTime(2016, 10, 29, 13, 0, 0), hoursToDate.OrderBy(x => x).First());
+            Assert.AreEqual(new DateTime(2016, 10, 30, 1, 0, 0), hoursToDate.OrderBy(x => x).Last());
         }
     }
 }

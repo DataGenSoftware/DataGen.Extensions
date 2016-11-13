@@ -59,7 +59,7 @@ namespace DataGen.Extentions.UnitTests
         public void IEnumerableNext_ElementDoesntExists_ThrowsInvalidOperationException()
         {
             var collection = this.MakeStringCollection();
- 
+
             Assert.Throws<InvalidOperationException>(() => collection.Next(x => x == "twenty"));
         }
 
@@ -168,6 +168,24 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void IEnumerableShuffle_ReturnsShuffledCollection()
+        {
+            var orderedCollection = this.MakeIntCollection().OrderBy(x => x).ToList();
+
+            var shuffledCollection = orderedCollection.Shuffle().ToList();
+
+            Assert.AreEqual(orderedCollection.Count, shuffledCollection.Count);
+
+            var sameOrder = true;
+            for (int i = 0; i < orderedCollection.Count; i++)
+            {
+               
+                sameOrder = sameOrder && orderedCollection[i] == shuffledCollection[i];
+            }
+            Assert.IsFalse(sameOrder);
+        }
+
 
         private IEnumerable<int> MakeIntCollection()
         {
@@ -176,19 +194,16 @@ namespace DataGen.Extentions.UnitTests
 
         private IEnumerable<string> MakeStringCollection()
         {
-            return new List<string>() { "one", "three", "four", "six", "eight", "nine" , "ten" };
+            return new List<string>() { "one", "three", "four", "six", "eight", "nine", "ten" };
         }
 
         private IEnumerable<DateTime> MakeDateTimeCollection()
         {
-            return new List<DateTime>()
-            {
-                new DateTime(2016, 1, 1),
-                new DateTime(2016, 4, 14),
-                new DateTime(2016, 3, 11),
-                new DateTime(2016, 5, 19),
-                new DateTime(2016, 6, 23),
-            };
+            yield return new DateTime(2016, 1, 1);
+            yield return new DateTime(2016, 4, 14);
+            yield return new DateTime(2016, 3, 11);
+            yield return new DateTime(2016, 5, 19);
+            yield return new DateTime(2016, 6, 23);
         }
     }
 }

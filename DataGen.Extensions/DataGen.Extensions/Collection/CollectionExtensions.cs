@@ -55,6 +55,12 @@ namespace DataGen.Extensions.Collection
             return collection.SkipWhile(x => !predicate(x)).Skip(1).First();
         }
 
+        public static IOrderedEnumerable<T> Shuffle<T>(this IEnumerable<T> collection)
+        {
+            var random = new Random();
+            return collection.OrderBy(x => random.Next());
+        }
+
         private static void CheckIfPredicateArgumentIsNull<T>(Func<T, bool> predicate)
         {
             if (predicate == null)

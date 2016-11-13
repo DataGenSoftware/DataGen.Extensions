@@ -129,26 +129,32 @@ namespace DataGen.Extensions
 			return value.BeginingOfQuarter().AddQuarters(1).AddTicks(-1);
 		}
 
-		public static IEnumerable<DateTime> DaysToDate(this DateTime value, DateTime toDate)
+		public static IList<DateTime> DaysToDate(this DateTime value, DateTime toDate)
 		{
+            var daysToDate = new List<DateTime>();
             value = value.Ceiling(new TimeSpan(1, 0, 0, 0));
 
             while (value <= toDate)
 			{
-				yield return value;
+				daysToDate.Add(value);
                 value = value.AddDays(1);
             }
+
+            return daysToDate;
 		}
 
-        public static IEnumerable<DateTime> HoursToDate(this DateTime value, DateTime toDate)
+        public static IList<DateTime> HoursToDate(this DateTime value, DateTime toDate)
         {
+            var hoursToDate = new List<DateTime>();
             value = value.Ceiling(new TimeSpan(1, 0, 0));
             
             while (value <= toDate)
             {
-                yield return value;
+                hoursToDate.Add(value);
                 value = value.AddHours(1);
             }
+
+            return hoursToDate;
         }
 
         private static DateTime Ceiling(this DateTime value, TimeSpan interval)
