@@ -34,6 +34,14 @@ namespace DataGen.Extensions.Publish.Common
             }
         }
 
+        private string NuGetSource
+        {
+            get
+            {
+                return this.PublishManager.GetAppSetting("NuGetSource");
+            }
+        }
+
         public NuGetManager(PublishManager publishManager)
         {
             this.PublishManager = publishManager;
@@ -56,7 +64,7 @@ namespace DataGen.Extensions.Publish.Common
         private void PushNupkg()
         {
             string fileName = this.NuGetPath;
-            string arguments = string.Format("push ..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".{0}.nupkg", this.VersionManager.GetCurrentVersionString());
+            string arguments = string.Format("push ..\\..\\..\\NuGet\\" + this.ProductsManager.Product + ".{0}.nupkg -Source {1}", this.VersionManager.GetCurrentVersionString(), this.NuGetSource);
             this.PublishManager.Process(fileName, arguments);
         }
     }
