@@ -74,19 +74,26 @@
     <Reference Include="Microsoft.CSharp" Condition="'$(TargetFrameworkVersion)' == 'v4.6'" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\NumberToWordsFactory.cs" />
-    <Compile Include="Common\NumberToWordsService.cs" />
+    <Compile Include="Common\INumberInWords.cs" />
+    <Compile Include="Common\INumberInWordsBuilder.cs" />
+    <Compile Include="Common\NullNumberInWords.cs" />
+    <Compile Include="Common\NumberInWords.cs" />
+    <Compile Include="Common\NumberInWordsBuilder.cs" />
+    <Compile Include="Common\NumberInWordsFactory.cs" />
+    <Compile Include="Common\NumberInWordsService.cs" />
     <Compile Include="Common\Numeral.cs" />
     <Compile Include="Common\NumeralGrammaticalCase.cs" />
     <Compile Include="Common\NumeralOrderOfMagnitude.cs" />
     <Compile Include="Common\NumeralsRepository.cs" />
-    <Compile Include="en\NumberToWordsFactory.cs" />
-    <Compile Include="en\NumberToWordsService.cs" />
+    <Compile Include="en\NumberInWordsBuilder.cs" />
+    <Compile Include="en\NumberInWordsFactory.cs" />
+    <Compile Include="en\NumberInWordsService.cs" />
     <Compile Include="en\NumeralsRepository.cs" />
     <Compile Include="NumberToWordsExtensions.cs" />
     <Compile Include="NumberToWordsFactoryCreator.cs" />
-    <Compile Include="pl\NumberToWordsFactory.cs" />
-    <Compile Include="pl\NumberToWordsService.cs" />
+    <Compile Include="pl\NumberInWordsBuilder.cs" />
+    <Compile Include="pl\NumberInWordsFactory.cs" />
+    <Compile Include="pl\NumberInWordsService.cs" />
     <Compile Include="pl\NumeralsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

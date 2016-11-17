@@ -1,15 +1,16 @@
-﻿using DataGen.NumberToWords.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using DataGen.NumberToWords.Common;
 
 namespace DataGen.NumberToWords.En
 {
-    public class NumberToWordsService : Common.NumberToWordsService
+    public class NumberInWordsBuilder : Common.NumberInWordsBuilder
     {
-        public NumberToWordsService(Common.NumeralsRepository numeralsRepository)
-            : base(numeralsRepository)
+        public NumberInWordsBuilder(int number, Common.NumeralsRepository numeralsRepository)
+            : base(number, numeralsRepository)
         {
         }
 
@@ -26,4 +27,5 @@ namespace DataGen.NumberToWords.En
             return string.Empty;
         }
     }
+
 }

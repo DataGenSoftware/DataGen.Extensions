@@ -9,10 +9,12 @@ namespace DataGen.NumberToWords.Common
     /// <summary>
     /// Abstract factory for creating objects dependent on culture
     /// </summary>
-    public abstract class NumberToWordsFactory
+    public abstract class NumberInWordsFactory
     {
         public abstract NumeralsRepository CreateNumeralsRepository();
 
-        public abstract NumberToWordsService CreateNumberToWordsService(NumeralsRepository numeralsRepository);
+        public abstract NumberInWordsService CreateNumberToWordsService(NumeralsRepository numeralsRepository, Common.NumberInWordsFactory numberInWordsFactory);
+
+        public abstract INumberInWordsBuilder CreateNumberInWordsBuilder(int number, NumeralsRepository numeralRepository);
     }
 }

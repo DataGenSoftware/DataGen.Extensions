@@ -1,22 +1,23 @@
-﻿using DataGen.NumberToWords.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using DataGen.NumberToWords.Common;
 
 namespace DataGen.NumberToWords.Pl
 {
-    public class NumberToWordsService: Common.NumberToWordsService
+    public class NumberInWordsBuilder:Common.NumberInWordsBuilder
     {
-        public NumberToWordsService(Common.NumeralsRepository numeralsRepository)
-            :base (numeralsRepository)
+        public NumberInWordsBuilder(int number, Common.NumeralsRepository numeralsRepository)
+            : base(number, numeralsRepository)
         {
         }
 
         protected override string GetNumeralExtension(int value, NumeralOrderOfMagnitude orderOfMagnitude)
         {
             NumeralGrammaticalCase grammaticalCase = NumeralGrammaticalCase.SingularNominative;
-            
+
             if (value % 10 >= 5 || value % 10 == 0 || (value >= 11 && value <= 19))
             {
                 grammaticalCase = NumeralGrammaticalCase.PluralGenitive;
@@ -35,4 +36,5 @@ namespace DataGen.NumberToWords.Pl
             return string.Empty;
         }
     }
+
 }

@@ -43,7 +43,7 @@ namespace DataGen.NumberToWords
 
         #endregion
 
-        public NumberToWordsFactory CreateFactory(string cultureName)
+        public NumberInWordsFactory CreateFactory(string cultureName)
         {
             if (cultureName.StartsWith("en"))
             {
