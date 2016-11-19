@@ -7,28 +7,28 @@ namespace DataGen.Extensions
 {
     public static class GenericExtensions
     {
-        public static bool IsNull<T>(this Nullable<T> objectInstance) 
+        public static bool IsNull<T>(this Nullable<T> value) 
             where T :struct
         {
-            return objectInstance == null;
+            return value == null;
         }
 
-        public static bool IsNull<T>(this T objectInstance) 
+        public static bool IsNull<T>(this T value) 
             where T : class
         {
-            return objectInstance == null;
+            return value == null;
         }
 
-        public static bool IsNotNull<T>(this Nullable<T> objectInstance) 
+        public static bool IsNotNull<T>(this Nullable<T> value) 
             where T : struct
         {
-            return !objectInstance.IsNull();
+            return !value.IsNull();
         }
 
-        public static bool IsNotNull<T>(this T objectInstance)
+        public static bool IsNotNull<T>(this T value)
             where T : class
         {
-            return !objectInstance.IsNull();
+            return !value.IsNull();
         }
 
         public static T DefaultIfNull<T>(this Nullable<T> value, T defaultValue)
@@ -41,6 +41,11 @@ namespace DataGen.Extensions
             where T : class
         {
             return value ?? defaultValue;
+        }
+
+        public static IEnumerable<T> Yield<T>(this T value)
+        {
+            return new T[] { value };
         }
     }
 }

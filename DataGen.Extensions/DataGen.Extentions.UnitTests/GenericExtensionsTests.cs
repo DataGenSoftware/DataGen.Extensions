@@ -14,9 +14,9 @@ namespace DataGen.Extentions.UnitTests
         [Test]
         public void GenericIsNull_Null_ReturnsTrue()
         {
-            int? objectInstance = null;
+            int? value = null;
 
-            bool actual = objectInstance.IsNull();
+            bool actual = value.IsNull();
 
             Assert.IsTrue(actual);
         }
@@ -24,9 +24,9 @@ namespace DataGen.Extentions.UnitTests
         [Test]
         public void GenericIsNull_Instance_ReturnsFalse()
         {
-            int? objectInstance = 7;
+            int? value = 7;
 
-            bool actual = objectInstance.IsNull();
+            bool actual = value.IsNull();
 
             Assert.IsFalse(actual);
         }
@@ -34,9 +34,9 @@ namespace DataGen.Extentions.UnitTests
         [Test]
         public void GenericIsNotNull_Null_ReturnsFalse()
         {
-            int? objectInstance = null;
+            int? value = null;
 
-            bool actual = objectInstance.IsNotNull();
+            bool actual = value.IsNotNull();
 
             Assert.IsFalse(actual);
         }
@@ -44,11 +44,23 @@ namespace DataGen.Extentions.UnitTests
         [Test]
         public void GenericIsNotNull_Instance_ReturnsTrue()
         {
-            int? objectInstance = 7;
+            int? value = 7;
 
-            bool actual = objectInstance.IsNotNull();
+            bool actual = value.IsNotNull();
 
             Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void GenericYield_Value_ReturnsIEnumerableWithOneElement()
+        {
+            int value = 7;
+
+            var actual = value.Yield();
+
+            Assert.NotNull(actual);
+            Assert.AreEqual(1, actual.Count());
+            Assert.IsInstanceOf<IEnumerable<int>>(actual);
         }
     }
 }
