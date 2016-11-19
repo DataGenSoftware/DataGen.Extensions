@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET types extensions.</description>
     <summary>Useful .NET types extensions library.</summary>
-    <tags>.net c# extensions extension types type methos method library helper datetime string int byte char bool collection list enumerable next previous page</tags>
+    <tags>.net extensions extension types type methos method library helper datetime string int byte char bool collection list enumerable next previous page</tags>
     <copyright>Copyright © Karol Habczyk</copyright>
   </metadata>
   <files>
