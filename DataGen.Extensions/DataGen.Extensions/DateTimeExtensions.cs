@@ -1,4 +1,5 @@
-﻿using DataGen.Extensions.Providers;
+﻿using DataGen.Extensions.Enums;
+using DataGen.Extensions.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,7 +133,7 @@ namespace DataGen.Extensions
         public static IList<DateTime> DaysToDate(this DateTime value, DateTime toDate)
         {
             var daysToDate = new List<DateTime>();
-            value = value.Ceiling(new TimeSpan(1, 0, 0, 0));
+            value = value.Ceiling(TimeInterval.Day);
 
             while (value <= toDate)
             {
@@ -146,7 +147,7 @@ namespace DataGen.Extensions
         public static IList<DateTime> HoursToDate(this DateTime value, DateTime toDate)
         {
             var hoursToDate = new List<DateTime>();
-            value = value.Ceiling(new TimeSpan(1, 0, 0));
+            value = value.Ceiling(TimeInterval.Hour);
 
             while (value <= toDate)
             {
@@ -157,23 +158,44 @@ namespace DataGen.Extensions
             return hoursToDate;
         }
 
-        public static DateTime Ceiling(this DateTime value, TimeSpan interval)
+        public static DateTime Ceiling(this DateTime value, TimeInterval timeInterval)
         {
+            var interval = GetTimeSpanInterval(timeInterval);
             var rest = value.Ticks % interval.Ticks;
             return rest >= 0 ? value.AddTicks(interval.Ticks - rest) : value;
         }
 
-        public static DateTime Floor(this DateTime value, TimeSpan interval)
+        public static DateTime Floor(this DateTime value, TimeInterval timeInterval)
         {
+            var interval = GetTimeSpanInterval(timeInterval);
             var rest = value.Ticks % interval.Ticks;
             return rest >= 0 ? value.AddTicks(-rest) : value;
         }
 
-        public static DateTime Round(this DateTime value, TimeSpan interval)
+        public static DateTime Round(this DateTime value, TimeInterval timeInterval)
         {
+            var interval = GetTimeSpanInterval(timeInterval);
             var halfIntervalTicks = (interval.Ticks + 1) >> 1;
             var rest = halfIntervalTicks - ((value.Ticks + halfIntervalTicks) % interval.Ticks);
             return value.AddTicks(rest);
+        }
+
+        // TODO: Move to helper
+        private static TimeSpan GetTimeSpanInterval(TimeInterval timeInterval)
+        {
+            switch(timeInterval)
+            {
+                case TimeInterval.Second:
+                    return new TimeSpan(0, 0, 1);
+                case TimeInterval.Minute:
+                    return new TimeSpan(0, 1, 0);
+                case TimeInterval.Hour:
+                    return new TimeSpan(1, 0, 0);
+                case TimeInterval.Day:
+                    return new TimeSpan(1, 0, 0, 0);
+                default:
+                    return new TimeSpan();
+            }
         }
     }
 }

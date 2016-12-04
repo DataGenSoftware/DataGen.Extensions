@@ -8,6 +8,8 @@ using DataGen.Extensions;
 using DataGen.Extensions.Providers;
 using FakeItEasy;
 using DataGen.Extensions.Contracts;
+using System.Globalization;
+using DataGen.Extensions.Enums;
 
 namespace DataGen.Extentions.UnitTests
 {
@@ -241,6 +243,49 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(13, hoursToDate.Count());
             Assert.AreEqual(new DateTime(2016, 10, 29, 13, 0, 0), hoursToDate.OrderBy(x => x).First());
             Assert.AreEqual(new DateTime(2016, 10, 30, 1, 0, 0), hoursToDate.OrderBy(x => x).Last());
+        }
+
+        [TestCase("2016-12-01 12:34:56", "2016-12-02 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 11:34:56", "2016-12-02 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 12:12:12", "2016-12-01 13:00:00", TimeInterval.Hour)]
+        [TestCase("2016-12-01 12:11:12", "2016-12-01 12:12:00", TimeInterval.Minute)]
+        public void DateTimeCeiling_DateTime_ReturnsCeiledDateTime(string dateTimeString, string expectedDateTimeString, TimeInterval timeInterval)
+        {
+            DateTime dateTime = DateTime.Parse(dateTimeString);
+            DateTime expectedDateTime = DateTime.Parse(expectedDateTimeString);
+
+            var roundedDateTime = dateTime.Ceiling(timeInterval);
+
+            Assert.AreEqual(expectedDateTime, roundedDateTime);
+        }
+
+        [TestCase("2016-12-01 12:34:56", "2016-12-01 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 12:12:12", "2016-12-01 12:00:00", TimeInterval.Hour)]
+        [TestCase("2016-12-01 12:11:12", "2016-12-01 12:11:00", TimeInterval.Minute)]
+        public void DateTimeFloor_DateTime_ReturnsCeiledDateTime(string dateTimeString, string expectedDateTimeString, TimeInterval timeInterval)
+        {
+            DateTime dateTime = DateTime.Parse(dateTimeString);
+            DateTime expectedDateTime = DateTime.Parse(expectedDateTimeString);
+
+            var roundedDateTime = dateTime.Floor(timeInterval);
+
+            Assert.AreEqual(expectedDateTime, roundedDateTime);
+        }
+
+        [TestCase("2016-12-01 12:34:56", "2016-12-02 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 11:12:12", "2016-12-01 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 12:00:00", "2016-12-02 00:00:00", TimeInterval.Day)]
+        [TestCase("2016-12-01 12:11:12", "2016-12-01 12:00:00", TimeInterval.Hour)]
+        [TestCase("2016-12-01 12:30:12", "2016-12-01 13:00:00", TimeInterval.Hour)]
+        [TestCase("2016-12-01 12:30:00", "2016-12-01 13:00:00", TimeInterval.Hour)]
+        public void DateTimeRound_DateTime_ReturnsCeiledDateTime(string dateTimeString, string expectedDateTimeString, TimeInterval timeInterval)
+        {
+            DateTime dateTime = DateTime.Parse(dateTimeString);
+            DateTime expectedDateTime = DateTime.Parse(expectedDateTimeString);
+
+            var roundedDateTime = dateTime.Round(timeInterval);
+
+            Assert.AreEqual(expectedDateTime, roundedDateTime);
         }
     }
 }
