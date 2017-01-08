@@ -87,6 +87,7 @@
     <Compile Include="Cryptography\SymmetricAlgorithmFactory.cs" />
     <Compile Include="Cryptography\SymmetricAlgorithmTypes.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Generic\Range.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="Collection\Page.cs" />
     <Compile Include="GenericExtensions.cs" />
