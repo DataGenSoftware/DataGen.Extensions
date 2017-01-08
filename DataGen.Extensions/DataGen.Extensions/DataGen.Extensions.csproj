@@ -91,6 +91,7 @@
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="Collection\Page.cs" />
     <Compile Include="GenericExtensions.cs" />
+    <Compile Include="Helpers\TimeSpanHelper.cs" />
     <Compile Include="NumberExtensions.cs" />
     <Compile Include="NumberToWords\NumberToWordsExtensions.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
