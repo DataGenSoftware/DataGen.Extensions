@@ -18,7 +18,17 @@ namespace DataGen.Extensions.Publish.Common
 
         public NuGetManager NuGetManager { get; set; }
 
-        public void DisplayMenu()
+
+
+		private string GitPath
+		{
+			get
+			{
+				return this.GetAppSetting("GitPath");
+			}
+		}
+
+		public void DisplayMenu()
         {
             if (this.ProductsManager.Products.Count > 1)
             {
@@ -110,7 +120,7 @@ namespace DataGen.Extensions.Publish.Common
 
         public void Git(string arguments)
         {
-            string fileName = "C:\\Program Files\\Git\\cmd\\git.exe";
+            string fileName = this.GitPath;
             Process(fileName, arguments);
         }
 

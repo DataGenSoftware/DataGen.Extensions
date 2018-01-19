@@ -42,7 +42,7 @@ namespace DataGen.Extensions.Publish.Common
             }
         }
 
-        public NuGetManager(PublishManager publishManager)
+		public NuGetManager(PublishManager publishManager)
         {
             this.PublishManager = publishManager;
         }
