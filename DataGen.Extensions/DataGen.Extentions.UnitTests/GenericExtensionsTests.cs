@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataGen.Extensions;
+using DataGen.Extensions.Enums;
 
 namespace DataGen.Extentions.UnitTests
 {
@@ -62,5 +63,18 @@ namespace DataGen.Extentions.UnitTests
             Assert.AreEqual(1, actual.Count());
             Assert.IsInstanceOf<IEnumerable<int>>(actual);
         }
+
+		[TestCase(TimeInterval.Second, "Second")]
+		[TestCase(TimeInterval.Minute, "Minute")]
+		[TestCase(TimeInterval.Hour, "Hour")]
+		[TestCase(TimeInterval.Day, "Day")]
+		public void GenericExtensions_GetDescription_TimeIntervalEnumValue_ReturnsDescriptionOfTheEnumValue(TimeInterval timeIntervalEnumValue, string timeIntervalEnumValueDescription)
+		{
+			var actual = timeIntervalEnumValue.GetDescription();
+
+			var expected = timeIntervalEnumValueDescription;
+			Assert.AreEqual(expected, actual);
+
+		}
     }
 }
